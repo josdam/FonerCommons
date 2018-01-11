@@ -5,6 +5,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
@@ -66,7 +67,7 @@ public class OkHttpClientManager {
 	/**
 	 * The initialised.
 	 */
-	private static boolean						initialised								= false;
+	private static final AtomicBoolean			initialised								= new AtomicBoolean(false);
 
 	/**
 	 * The http client.
@@ -99,10 +100,10 @@ public class OkHttpClientManager {
 	 * @return single instance of OkHttpClientManager
 	 */
 	public static OkHttpClientManager getInstance() {
-		if (!initialised) {
+		if (!initialised.get()) {
 			try {
 				buildOkHttpClient();
-				initialised = true;
+				initialised.set(true);
 			} catch (JumboCommonException ex) {
 				logger.fatal(ex, ex);
 			}
