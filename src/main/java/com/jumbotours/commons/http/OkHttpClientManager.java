@@ -100,13 +100,8 @@ public class OkHttpClientManager {
 	 * @return single instance of OkHttpClientManager
 	 */
 	public static OkHttpClientManager getInstance() {
-		if (!initialised.get()) {
-			try {
-				buildOkHttpClient();
-				initialised.set(true);
-			} catch (JumboCommonException ex) {
-				logger.fatal(ex, ex);
-			}
+		if (!initialised.getAndSet(true)) {
+			buildOkHttpClient();
 		}
 		return instance;
 	}
@@ -117,7 +112,7 @@ public class OkHttpClientManager {
 	 * @throws JumboCommonException
 	 *             the jumbo common exception
 	 */
-	private static void buildOkHttpClient() throws JumboCommonException {
+	private static void buildOkHttpClient() {
 		OkHttpClient.Builder builder;
 		if (httpClient == null) {
 			builder = new OkHttpClient.Builder();
@@ -157,7 +152,7 @@ public class OkHttpClientManager {
 
 				});
 			} catch (NoSuchAlgorithmException | KeyManagementException ex) {
-				throw new JumboCommonException("Error building OkHttpClient", ex);
+				logger.error("Error setting configuration for ingnoring ssl certificates", ex);
 			}
 		}
 
