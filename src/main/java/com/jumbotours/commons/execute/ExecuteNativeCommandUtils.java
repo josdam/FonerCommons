@@ -1,6 +1,9 @@
 package com.jumbotours.commons.execute;
 
+import com.jumbotours.commons.exception.JumboCommonException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
@@ -34,9 +37,10 @@ public final class ExecuteNativeCommandUtils {
 	 * @param command
 	 *            the command to be execute
 	 * @return the result of executing the given command
-	 * @throws java.lang.Exception
+	 * @throws JumboCommonException
+	 *             the jumbo common exception
 	 */
-	public static String execute(String command) throws Exception {
+	public static String execute(String command) throws JumboCommonException {
 		String output = null;
 
 		Process process;
@@ -46,10 +50,18 @@ public final class ExecuteNativeCommandUtils {
 			process = Runtime.getRuntime().exec(command);
 			process.waitFor();
 			inputStream = process.getInputStream();
-			output = IOUtils.toString(inputStream, "UTF-8");
+			output = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			logger.info("Result of executed command: " + output);
+		} catch (IOException | InterruptedException e) {
+			throw new JumboCommonException(e);
 		} finally {
-			IOUtils.closeQuietly(inputStream);
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					throw new JumboCommonException(e);
+				}
+			}
 		}
 
 		return output;
