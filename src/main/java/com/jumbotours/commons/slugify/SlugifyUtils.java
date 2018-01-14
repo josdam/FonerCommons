@@ -2,6 +2,7 @@ package com.jumbotours.commons.slugify;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import org.apache.commons.lang3.StringUtils;
@@ -56,7 +57,7 @@ public final class SlugifyUtils {
 		toReturn = StringUtils.join(StringUtils.split(toReturn, " "), "-");
 		toReturn = StringUtils.lowerCase(toReturn);
 		try {
-			toReturn = URLEncoder.encode(toReturn, "UTF-8");
+			toReturn = URLEncoder.encode(toReturn, StandardCharsets.UTF_8.name());
 		} catch (UnsupportedEncodingException ex) {}
 		return toReturn;
 	}

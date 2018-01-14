@@ -3,6 +3,7 @@ package com.jumbotours.commons.jaxws;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Set;
 import javax.xml.namespace.QName;
@@ -30,7 +31,7 @@ public class SOAPLoggingHandler implements SOAPHandler<SOAPMessageContext> {
 	private String					responseMessage;
 
 	/** The Constant DEFAULT_CHARACTER_SET. */
-	private static final Charset	DEFAULT_CHARACTER_SET	= Charset.forName("UTF-8");
+	private static final Charset	DEFAULT_CHARACTER_SET	= StandardCharsets.UTF_8;
 
 	/*
 	 * (non-Javadoc)

@@ -18,10 +18,10 @@ import org.apache.log4j.Logger;
  * 
  * @author Josep Carbonell
  */
-public final class JaxWsUtils {
+public final class JaxwsUtils {
 
 	/** The logger. */
-	private static final Logger	logger				= Logger.getLogger(JaxWsUtils.class);
+	private static final Logger	logger				= Logger.getLogger(JaxwsUtils.class);
 
 	/** The CONNECT_TIMEOUT constant. */
 	public static final String	CONNECT_TIMEOUT_OLD	= "com.sun.xml.internal.ws.connect.timeout";
@@ -38,7 +38,7 @@ public final class JaxWsUtils {
 	/**
 	 * Hides default constructor.
 	 */
-	private JaxWsUtils() {}
+	private JaxwsUtils() {}
 
 	/**
 	 * Overrides http headers

@@ -1,37 +1,39 @@
-package com.jumbotours.commons.json.parser;
+package com.jumbotours.commons.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.io.IOException;
 import org.apache.log4j.Logger;
 
 /**
- * The class JsonParser.
+ * The class Json.
  *
  * @author Josep Carbonell
  */
-public class JsonParser {
+public class Json {
 
 	/** The logger. */
-	private static final Logger		logger		= Logger.getLogger(JsonParser.class);
+	private static final Logger	logger		= Logger.getLogger(Json.class);
 
 	/** The instance. */
-	private static final JsonParser	instance	= new JsonParser();
+	private static final Json	instance	= new Json();
 
 	/** The object mapper. */
-	private ObjectMapper			mapper;
+	private ObjectMapper		mapper;
 
 	/** The object writer. */
-	private ObjectWriter			writer;
+	private ObjectWriter		writer;
 
 	/** The object pretty writer. */
-	private ObjectWriter			prettyWriter;
+	private ObjectWriter		prettyWriter;
 
 	/**
 	 * Hides default constructor.
 	 */
-	private JsonParser() {
+	private Json() {
 		init();
 	}
 
@@ -58,7 +60,7 @@ public class JsonParser {
 	 * 
 	 * @return the json parser instance.
 	 */
-	public static JsonParser getInstance() {
+	public static Json getInstance() {
 		return instance;
 	}
 
@@ -67,8 +69,8 @@ public class JsonParser {
 	 * 
 	 * @return the json parser instance.
 	 */
-	public static JsonParser newInstance() {
-		JsonParser jsonParser = new JsonParser();
+	public static Json newInstance() {
+		Json jsonParser = new Json();
 		logger.debug("Instancing new JsonParser: " + jsonParser);
 		return jsonParser;
 	}
@@ -89,7 +91,7 @@ public class JsonParser {
 		try {
 			logger.debug("Deserialize Parser Instance: " + this);
 			return mapper.readValue(jsonString, valueType);
-		} catch (Exception ex) {
+		} catch (IOException ex) {
 			logger.error("Error deserializing the given json: ", ex);
 		} finally {
 			logger.info("Deserialize in " + (System.currentTimeMillis() - time) + " ms.");
@@ -125,7 +127,7 @@ public class JsonParser {
 				return prettyWriter.writeValueAsString(object);
 			}
 			return writer.writeValueAsString(object);
-		} catch (Exception ex) {
+		} catch (JsonProcessingException ex) {
 			logger.error("Error serializing the given object: ", ex);
 		} finally {
 			logger.info("Serialize in " + (System.currentTimeMillis() - time) + " ms.");

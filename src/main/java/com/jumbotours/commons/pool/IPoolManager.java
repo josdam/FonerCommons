@@ -25,7 +25,7 @@ public interface IPoolManager<T> {
 	static final long	DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS	= 60000;
 
 	/** The Constant DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS. */
-	static final long	DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS		= 1200000;
+	static final long	DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS		= 120000;
 
 	/**
 	 * Gets the pool.

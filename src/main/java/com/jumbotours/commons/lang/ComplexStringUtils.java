@@ -3,6 +3,7 @@ package com.jumbotours.commons.lang;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
@@ -76,12 +77,9 @@ public final class ComplexStringUtils extends StringUtils {
 	 */
 	public static InputStream stringToInputStream(String str) {
 		InputStream is = null;
-		try {
-			if (isNotEmpty(str)) {
-				is = new ByteArrayInputStream(str.getBytes("UTF-8"));
-			}
-		} catch (UnsupportedEncodingException e) {}
-
+		if (isNotEmpty(str)) {
+			is = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
+		}
 		return is;
 	}
 

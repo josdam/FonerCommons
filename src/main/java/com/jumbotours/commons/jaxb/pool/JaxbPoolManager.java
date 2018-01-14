@@ -1,40 +1,40 @@
-package com.jumbotours.commons.json.parser.pool;
+package com.jumbotours.commons.jaxb.pool;
 
-import com.jumbotours.commons.json.parser.JsonParser;
+import com.jumbotours.commons.jaxb.Jaxb;
 import com.jumbotours.commons.pool.IPoolManager;
 import com.jumbotours.commons.pool.Pool;
 import com.jumbotours.commons.pool.SimplePooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 /**
- * The class JsonParserPoolManagerV2.
+ * The class JaxbPoolManager.
  *
  * @author Josep Carbonell
  */
-public class JsonParserPoolManager implements IPoolManager<JsonParser> {
+public class JaxbPoolManager implements IPoolManager<Jaxb> {
 
 	/** The instance. */
-	private static final JsonParserPoolManager	instance	= new JsonParserPoolManager();
+	private static final JaxbPoolManager	instance	= new JaxbPoolManager();
 
 	/** The config. */
-	private GenericObjectPoolConfig				config;
+	private GenericObjectPoolConfig			config;
 
-	/** The json parser pool. */
-	private Pool<JsonParser>					pool;
+	/** The jaxb parser pool. */
+	private Pool<Jaxb>						pool;
 
 	/**
 	 * Hides default constructor.
 	 */
-	private JsonParserPoolManager() {
+	private JaxbPoolManager() {
 		readConfiguration();
 	}
 
 	/**
 	 * Gets the instance following singleton pattern.
 	 * 
-	 * @return the json parser pool manager instance.
+	 * @return the jaxb parser pool manager instance.
 	 */
-	public static JsonParserPoolManager getInstance() {
+	public static JaxbPoolManager getInstance() {
 		return instance;
 	}
 
@@ -44,7 +44,7 @@ public class JsonParserPoolManager implements IPoolManager<JsonParser> {
 	 * @see com.jumbotours.commons.pool.IPoolManager#getPool()
 	 */
 	@Override
-	public Pool<JsonParser> getPool() {
+	public Pool<Jaxb> getPool() {
 		return pool;
 	}
 
@@ -73,7 +73,7 @@ public class JsonParserPoolManager implements IPoolManager<JsonParser> {
 		config.setMaxWaitMillis(DEFAULT_MAX_WAIT_MILLIS);
 		config.setTimeBetweenEvictionRunsMillis(DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS);
 		config.setMinEvictableIdleTimeMillis(DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS);
-		pool = new Pool<>(new SimplePooledObjectFactory<>(JsonParser.class), config);
+		pool = new Pool<>(new SimplePooledObjectFactory<>(Jaxb.class), config);
 	}
 
 }

@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Map;
@@ -213,14 +214,21 @@ public final class HttpClientUtil {
 	/**
 	 * Gets the response as array of bytes.
 	 *
-	 * @param request            the request if is POST
-	 * @param requestMethod            the request method
-	 * @param httpHeaders            the http headers
-	 * @param connectionTimeout the connection timeout
-	 * @param readTimeout the read timeout
-	 * @param httpURLConnection            the instance of {@link HttpURLConnection}
+	 * @param request
+	 *            the request if is POST
+	 * @param requestMethod
+	 *            the request method
+	 * @param httpHeaders
+	 *            the http headers
+	 * @param connectionTimeout
+	 *            the connection timeout
+	 * @param readTimeout
+	 *            the read timeout
+	 * @param httpURLConnection
+	 *            the instance of {@link HttpURLConnection}
 	 * @return the response as array bytes
-	 * @throws Exception             the exception
+	 * @throws Exception
+	 *             the exception
 	 */
 	private static byte[] getResponseAsArrayBytes(String request, String requestMethod, Map<String, String> httpHeaders, int connectionTimeout, int readTimeout,
 			HttpURLConnection httpURLConnection) throws Exception {
@@ -279,9 +287,11 @@ public final class HttpClientUtil {
 	/**
 	 * Dispatch from HttpURLConnection.
 	 *
-	 * @param http the http
+	 * @param http
+	 *            the http
 	 * @return the input stream
-	 * @throws Exception the exception
+	 * @throws Exception
+	 *             the exception
 	 */
 	private static InputStream dispatch(HttpURLConnection http) throws Exception {
 		try {
@@ -314,6 +324,6 @@ public final class HttpClientUtil {
 	 *             the unsupported encoding exception
 	 */
 	public static String toString(byte[] bytes) throws UnsupportedEncodingException {
-		return new String(bytes, "UTF-8");
+		return new String(bytes, StandardCharsets.UTF_8);
 	}
 }
