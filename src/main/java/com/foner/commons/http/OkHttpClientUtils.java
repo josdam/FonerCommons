@@ -12,19 +12,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
- * The class OkHttpClientUtil.
+ * The class OkHttpClientUtils.
  *
  * @author Josep Carbonell
  */
-public final class OkHttpClientUtil {
+public final class OkHttpClientUtils {
 
 	/** The logger. */
-	private static final Logger logger = Logger.getLogger(OkHttpClientUtil.class);
+	private static final Logger logger = Logger.getLogger(OkHttpClientUtils.class);
 
 	/**
 	 * Hide default constructor.
 	 */
-	private OkHttpClientUtil() {}
+	private OkHttpClientUtils() {}
 
 	/**
 	 * Gets the response as bytes.

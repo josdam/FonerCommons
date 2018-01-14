@@ -24,16 +24,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
- * The class HttpClientUtil.
+ * The class HttpClientUtils.
  *
  * @author Josep Carbonell
  */
-public final class HttpClientUtil {
+public final class HttpClientUtils {
 
 	/**
 	 * The logger.
 	 */
-	private static final Logger	logger			= Logger.getLogger(HttpClientUtil.class);
+	private static final Logger	logger			= Logger.getLogger(HttpClientUtils.class);
 
 	/**
 	 * The Constant GET_METHOD.
@@ -63,7 +63,7 @@ public final class HttpClientUtil {
 	/**
 	 * Hide default constructor.
 	 */
-	private HttpClientUtil() {}
+	private HttpClientUtils() {}
 
 	/**
 	 * Do http request.
