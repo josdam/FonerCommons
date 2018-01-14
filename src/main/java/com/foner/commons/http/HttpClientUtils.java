@@ -25,9 +25,12 @@ import org.apache.log4j.Logger;
 
 /**
  * The class HttpClientUtils.
+ * 
+ * @deprecated use {@link OkHttpClientUtils}
  *
  * @author Josep Carbonell
  */
+@Deprecated
 public final class HttpClientUtils {
 
 	/**

@@ -1,7 +1,8 @@
 package com.foner.commons.zip;
 
 import com.google.common.io.Files;
-import com.foner.commons.http.HttpClientUtils;
+import com.foner.commons.http.HttpMethodType;
+import com.foner.commons.http.OkHttpClientUtils;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -54,7 +55,7 @@ public final class ZipUtils {
 				String fileName = entrySet.getKey();
 				String url = entrySet.getValue();
 				// download from resource
-				byte[] download = HttpClientUtils.doRequest(url);
+				byte[] download = OkHttpClientUtils.getResponseAsBytes(url, HttpMethodType.GET, null, null, null);
 				bais = new ByteArrayInputStream(download);
 				origin = new BufferedInputStream(bais, BUFFER);
 
