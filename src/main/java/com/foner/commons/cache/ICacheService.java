@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Cache Service Implementation.
  * 
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public interface ICacheService extends Serializable {
 

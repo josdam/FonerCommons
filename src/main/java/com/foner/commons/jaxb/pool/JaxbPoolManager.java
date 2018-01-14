@@ -21,7 +21,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  * JsonPoolManager.getInstance().getPool().returnObject(json);
  * </pre>
  * 
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public class JaxbPoolManager implements IPoolManager<Jaxb> {
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The Interface IPredicate.
  *
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <S>
  *            the unspecified class
  */

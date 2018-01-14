@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 /**
  * The Interface ICallable.
  *
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <C>
  *            the generic type
  */

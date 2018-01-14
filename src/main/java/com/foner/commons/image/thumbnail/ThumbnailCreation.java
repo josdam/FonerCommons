@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 /**
  * This class contains the variables and methods to create thumbnails from pictures.
  * 
- * @author Oscar Alonso, Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * 
  */
 public class ThumbnailCreation {

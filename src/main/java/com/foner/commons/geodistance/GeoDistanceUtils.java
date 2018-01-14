@@ -4,10 +4,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
- * The class DistanceUtil. This code is based on DistanceCalculator's routine from GeoDataSource
+ * The class DistanceUtil. This code is based on DistanceCalculator's routine from GeoDataSource:
  * 
- * @link https://www.geodatasource.com/developers/java
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * <a href="https://www.geodatasource.com/developers/java">https://www.geodatasource.com/developers/java</a>
+ * 
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public final class GeoDistanceUtils {
 

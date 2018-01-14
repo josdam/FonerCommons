@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 /**
  * The class SimplePooledObjectFactory.
  *
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <T>
  *            Type of element pooled in this pool.
  */

@@ -3,7 +3,7 @@ package com.foner.commons.http;
 /**
  * The enum class HttpMethodType.
  *
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public enum HttpMethodType {
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The Interface IValidator.
  *
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <T>
  *            the generic type
  */

@@ -12,6 +12,7 @@ import org.joda.time.DateTime;
  * 
  * <p>
  * A Day Of Week pattern. Example DOW(0000011).
+ * </p>
  */
 public class DOWPattern implements Serializable {
 

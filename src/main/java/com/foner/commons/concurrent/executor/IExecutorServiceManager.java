@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * The Interface IExecutorServiceManager.
  * 
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public interface IExecutorServiceManager extends Serializable {
 

@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * The DirsUtil Class.
  * 
- * @author Manuel Vidal, Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public final class DirectoryUtils {
 

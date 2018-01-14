@@ -6,7 +6,7 @@ import java.net.PasswordAuthentication;
 /**
  * The class HttpBasicAuthenticator.
  *
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public class HttpBasicAuthenticator extends Authenticator {
 

@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 /**
  * The class JaxWsUtil.
  * 
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public final class JaxwsUtils {
 

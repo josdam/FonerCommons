@@ -5,11 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * The class ASCIINormalizerUtil.
  * 
- * <p>
- * This class is based in the code of {@link ASCIIFoldingFilter}
- * </p>
  * 
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public final class ASCIINormalizerUtils {
 

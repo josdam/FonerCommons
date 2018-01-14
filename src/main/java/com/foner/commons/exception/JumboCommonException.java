@@ -3,7 +3,7 @@ package com.foner.commons.exception;
 /**
  * The class JumboCommonException.
  *
- * @author Josep Carbonell <josepdcs@gmail.com>
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public class JumboCommonException extends Exception {
 
