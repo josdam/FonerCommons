@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * The Enum CurrencyType.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public enum CurrencyType implements Serializable {
 

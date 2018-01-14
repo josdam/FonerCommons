@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  * 
  * @deprecated use {@link OkHttpClientUtils}
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 @Deprecated
 public final class HttpClientUtils {

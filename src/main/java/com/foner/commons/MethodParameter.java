@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The class MethodParameter.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class MethodParameter implements Serializable {
 

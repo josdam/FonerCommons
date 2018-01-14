@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The Interface ISpringBean.
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public interface ISpringBean extends Serializable {
 

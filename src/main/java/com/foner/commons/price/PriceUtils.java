@@ -7,7 +7,7 @@ import java.math.RoundingMode;
 /**
  * The class PriceUtil.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public final class PriceUtils {
 

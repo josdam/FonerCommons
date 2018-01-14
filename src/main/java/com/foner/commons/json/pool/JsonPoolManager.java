@@ -21,7 +21,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  * JsonPoolManager.getInstance().getPool().returnObject(json);
  * </pre>
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class JsonPoolManager implements IPoolManager<Json> {
 

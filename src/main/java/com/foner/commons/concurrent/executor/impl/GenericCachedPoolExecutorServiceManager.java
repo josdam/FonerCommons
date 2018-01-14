@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 /**
  * The class GenericCachedPoolExecutorServiceManager.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class GenericCachedPoolExecutorServiceManager implements IExecutorServiceManager {
 

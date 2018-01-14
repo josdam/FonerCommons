@@ -7,7 +7,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 /**
  * The class JsonParserPool.
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  * @param <T>
  *            Type of element pooled in this pool.
  */

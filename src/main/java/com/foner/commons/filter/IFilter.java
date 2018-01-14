@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * The Interface IFilter.
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  * @param <T>
  *            the unspecified class
  * @param <S>

@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 /**
  * The class SOAPLoggingHandler.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class SOAPLoggingHandler implements SOAPHandler<SOAPMessageContext> {
 

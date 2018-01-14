@@ -6,7 +6,7 @@ import net.sf.ehcache.Ehcache;
 /**
  * Cache Service Manager Interface Definition.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public interface ICacheServiceManager extends Serializable {
 

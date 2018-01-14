@@ -7,7 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 /**
  * The class SpringBeanLookupUtil.
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public final class SpringBeanLookupManager {
 

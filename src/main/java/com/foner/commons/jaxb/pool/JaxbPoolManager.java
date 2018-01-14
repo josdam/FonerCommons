@@ -8,8 +8,20 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 /**
  * The class JaxbPoolManager.
- *
- * @author Josep Carbonell
+ * 
+ * <p>
+ * Using as follows:
+ * </p>
+ * 
+ * <pre>
+ * // borrowing object from pool
+ * Json json = JsonPoolManager.getInstance().getPool().borrowObject();
+ * ...
+ * // returning object to pool
+ * JsonPoolManager.getInstance().getPool().returnObject(json);
+ * </pre>
+ * 
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class JaxbPoolManager implements IPoolManager<Jaxb> {
 

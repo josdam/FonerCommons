@@ -5,7 +5,7 @@ import com.foner.commons.concurrent.callable.ICallable;
 /**
  * The Interface IGenericWorker.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  * @param <C>
  *            the generic type
  */

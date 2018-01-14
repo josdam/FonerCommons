@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * The class CurrencyUtil.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public final class CurrencyUtils {
 

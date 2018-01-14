@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 /**
  * Cache Service Manager implementation class.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class CacheServiceManager implements ICacheServiceManager {
 

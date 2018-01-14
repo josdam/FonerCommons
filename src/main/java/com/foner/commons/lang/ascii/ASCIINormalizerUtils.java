@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  * This class is based in the code of {@link ASCIIFoldingFilter}
  * </p>
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public final class ASCIINormalizerUtils {
 

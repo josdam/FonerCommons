@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  * 
  * @param <T>
  *            the generic type
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class GenericCallable<T> implements IGenericCallable<Object>, Serializable {
 

@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * The class SlugifyUitl. Class to slugify strings for SEO-friendly urls
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public final class SlugifyUtils {
 

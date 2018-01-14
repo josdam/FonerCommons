@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 /**
  * The class Json.
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public class Json {
 

@@ -8,7 +8,7 @@ import com.foner.commons.concurrent.worker.generic.IGenericWorker;
  * 
  * @param <T>
  *            the generic type
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public interface IGenericWorkerExecutorServiceManager<T> extends IExecutorServiceManager {
 

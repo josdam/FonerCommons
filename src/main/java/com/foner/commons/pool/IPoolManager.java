@@ -3,7 +3,7 @@ package com.foner.commons.pool;
 /**
  * The interface IPoolManager.
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  * @param <T>
  *            Type of element pooled in this pool manager.
  */

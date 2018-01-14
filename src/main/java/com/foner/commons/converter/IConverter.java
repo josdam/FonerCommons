@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The Interface IConverter.
  *
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  * @param <T>
  *            the generic type to be converted
  * @param <S>

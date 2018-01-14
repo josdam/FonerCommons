@@ -15,7 +15,7 @@ import org.joda.time.format.DateTimeFormatter;
 /**
  * The DateUtils class.
  * 
- * @author Josep Carbonell
+ * @author Josep Carbonell <josepdcs@gmail.com>
  */
 public final class DateUtils {
 
