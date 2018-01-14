@@ -1,2 +1,3 @@
 # FonerCommons
-Private Project
+
+Several utilities Java classes. Enjoy it!
