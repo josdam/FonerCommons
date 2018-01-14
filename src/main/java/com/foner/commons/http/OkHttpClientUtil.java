@@ -43,7 +43,7 @@ public final class OkHttpClientUtil {
 	 * @throws JumboCommonException
 	 *             the jumbo common exception
 	 */
-	public byte[] getResponseAsBytes(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
+	public static byte[] getResponseAsBytes(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
 			String mediaType) throws JumboCommonException {
 		byte[] result = null;
 		try (Response response = getResponse(endPoint, httpMethodType, httpHeaders, requestMessage, mediaType)) {
@@ -79,7 +79,7 @@ public final class OkHttpClientUtil {
 	 * @throws JumboCommonException
 	 *             the jumbo common exception
 	 */
-	public String getResponseAsString(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
+	public static String getResponseAsString(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
 			String mediaType) throws JumboCommonException {
 		String result = null;
 		try (Response response = getResponse(endPoint, httpMethodType, httpHeaders, requestMessage, mediaType)) {
@@ -117,7 +117,7 @@ public final class OkHttpClientUtil {
 	 * @throws NullPointerException
 	 *             the null pointer exception
 	 */
-	private Response getResponse(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
+	private static Response getResponse(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
 			String mediaType) throws IOException, NullPointerException {
 		Request request;
 		// switching by http method type and building the request instance
