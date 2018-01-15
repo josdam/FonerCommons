@@ -259,5 +259,6 @@
             <version>1.7.3</version>
         </dependency>
     </dependencies>
+    <!-- Project Name -->
     <name>FonerCommons (1.0-SNAPSHOT)</name>
 </project>
