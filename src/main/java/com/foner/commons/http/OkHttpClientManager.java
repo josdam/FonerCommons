@@ -1,6 +1,8 @@
 package com.foner.commons.http;
 
 import com.foner.commons.exception.FonerCommonException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -89,6 +91,12 @@ public class OkHttpClientManager {
 	/** The keep alive duration in minutes. */
 	private static int							keepAliveDurationInMinutes				= DEFAULT_KEEP_ALIVE_DURATION_IN_MINUTES;
 
+	/** The proxy host. */
+	private static String						proxyHost;
+
+	/** The proxy port. */
+	private static int							proxyPort;
+
 	/**
 	 * Hides default constructors.
 	 */
@@ -110,7 +118,7 @@ public class OkHttpClientManager {
 	 * Builds the {@link OkHttpClient}}.
 	 *
 	 * @throws FonerCommonException
-	 *             the jumbo common exception
+	 *             the foner common exception
 	 */
 	private static void buildOkHttpClient() {
 		OkHttpClient.Builder builder;
@@ -159,6 +167,10 @@ public class OkHttpClientManager {
 		// setting connection pool configuration
 		builder.connectionPool(new ConnectionPool(maxIdleConnectionsPool, keepAliveDurationInMinutes, TimeUnit.MINUTES));
 
+		if (StringUtils.isNotEmpty(proxyHost) && proxyPort > 0) {
+			builder.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort)));
+		}
+
 		httpClient = builder.writeTimeout(requestTimeout, TimeUnit.MILLISECONDS).connectTimeout(connectionTimeout, TimeUnit.MILLISECONDS).readTimeout(
 				readTimeout, TimeUnit.MILLISECONDS).build();
 	}
@@ -178,7 +190,7 @@ public class OkHttpClientManager {
 	 * @param timeout
 	 *            the timeout
 	 * @throws FonerCommonException
-	 *             the jumbo common exception
+	 *             the foner common exception
 	 */
 	public synchronized void writeConnectionTimeout(int timeout) throws FonerCommonException {
 		connectionTimeout = timeout;
@@ -191,7 +203,7 @@ public class OkHttpClientManager {
 	 * @param timeout
 	 *            the timeout
 	 * @throws FonerCommonException
-	 *             the jumbo common exception
+	 *             the foner common exception
 	 */
 	public synchronized void writeReadTimeout(int timeout) throws FonerCommonException {
 		readTimeout = timeout;
@@ -204,7 +216,7 @@ public class OkHttpClientManager {
 	 * @param timeout
 	 *            the timeout
 	 * @throws FonerCommonException
-	 *             the jumbo common exception
+	 *             the foner common exception
 	 */
 	public synchronized void writeRequestTimeout(int timeout) throws FonerCommonException {
 		requestTimeout = timeout;
@@ -219,11 +231,27 @@ public class OkHttpClientManager {
 	 * @param keepAliveInMinutes
 	 *            the keep alive in minutes
 	 * @throws FonerCommonException
-	 *             the jumbo common exception
+	 *             the foner common exception
 	 */
 	public synchronized void writePoolConfiguration(int maxIdle, int keepAliveInMinutes) throws FonerCommonException {
 		maxIdleConnectionsPool = maxIdle;
 		keepAliveDurationInMinutes = keepAliveInMinutes;
+		buildOkHttpClient();
+	}
+
+	/**
+	 * Write proxy configuration.
+	 *
+	 * @param host
+	 *            the proxy host
+	 * @param port
+	 *            the proxy port
+	 * @throws FonerCommonException
+	 *             the foner common exception
+	 */
+	public synchronized void writeProxyConfiguration(String host, int port) throws FonerCommonException {
+		proxyHost = host;
+		proxyPort = port;
 		buildOkHttpClient();
 	}
 

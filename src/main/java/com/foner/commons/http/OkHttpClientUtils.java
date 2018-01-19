@@ -155,4 +155,13 @@ public final class OkHttpClientUtils {
 		// calling to server and getting response
 		return OkHttpClientManager.getInstance().getOkHttpClient().newCall(request).execute();
 	}
+
+	/**
+	 * Gets the {@link OkHttpClientManager} instance.
+	 * 
+	 * @return the {@link OkHttpClientManager} instance
+	 */
+	public static OkHttpClientManager getOkHttpClientManager() {
+		return OkHttpClientManager.getInstance();
+	}
 }
