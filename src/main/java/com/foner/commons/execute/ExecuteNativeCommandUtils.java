@@ -1,6 +1,6 @@
 package com.foner.commons.execute;
 
-import com.foner.commons.exception.JumboCommonException;
+import com.foner.commons.exception.FonerCommonException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -37,10 +37,10 @@ public final class ExecuteNativeCommandUtils {
 	 * @param command
 	 *            the command to be execute
 	 * @return the result of executing the given command
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
-	public static String execute(String command) throws JumboCommonException {
+	public static String execute(String command) throws FonerCommonException {
 		String output = null;
 
 		Process process;
@@ -53,13 +53,13 @@ public final class ExecuteNativeCommandUtils {
 			output = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			logger.info("Result of executed command: " + output);
 		} catch (IOException | InterruptedException e) {
-			throw new JumboCommonException(e);
+			throw new FonerCommonException(e);
 		} finally {
 			if (inputStream != null) {
 				try {
 					inputStream.close();
 				} catch (IOException e) {
-					throw new JumboCommonException(e);
+					throw new FonerCommonException(e);
 				}
 			}
 		}

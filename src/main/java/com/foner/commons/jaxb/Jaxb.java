@@ -1,6 +1,6 @@
 package com.foner.commons.jaxb;
 
-import com.foner.commons.exception.JumboCommonException;
+import com.foner.commons.exception.FonerCommonException;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -65,11 +65,11 @@ public final class Jaxb {
 	 * @param valueType
 	 *            the value type
 	 * @return the t
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> T unmarshal(String xml, Class<T> valueType) throws JumboCommonException {
+	public <T> T unmarshal(String xml, Class<T> valueType) throws FonerCommonException {
 		StringReader reader = null;
 		try {
 			JAXBContext jaxbContext = getJAXBContext(valueType);
@@ -78,7 +78,7 @@ public final class Jaxb {
 			reader = new StringReader(xml);
 			return (T) jaxbUnmarshaller.unmarshal(reader);
 		} catch (JAXBException e) {
-			throw new JumboCommonException("Unexpected error unmarshalling: ", e);
+			throw new FonerCommonException("Unexpected error unmarshalling: ", e);
 		} finally {
 			if (reader != null) {
 				reader.close();
@@ -96,18 +96,18 @@ public final class Jaxb {
 	 * @param valueType
 	 *            the value type
 	 * @return the t
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> T unmarshal(File file, Class<T> valueType) throws JumboCommonException {
+	public <T> T unmarshal(File file, Class<T> valueType) throws FonerCommonException {
 		try {
 			JAXBContext jaxbContext = getJAXBContext(valueType);
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			return (T) jaxbUnmarshaller.unmarshal(file);
 		} catch (JAXBException e) {
-			throw new JumboCommonException("Unexpected error unmarshalling: ", e);
+			throw new FonerCommonException("Unexpected error unmarshalling: ", e);
 		}
 	}
 
@@ -121,10 +121,10 @@ public final class Jaxb {
 	 * @param valueType
 	 *            the value type
 	 * @return the string
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
-	public <T> String marshal(T entity, Class<T> valueType) throws JumboCommonException {
+	public <T> String marshal(T entity, Class<T> valueType) throws FonerCommonException {
 		StringWriter writer = null;
 
 		try {
@@ -136,13 +136,13 @@ public final class Jaxb {
 			jaxbMarshaller.marshal(entity, writer);
 			return writer.toString();
 		} catch (JAXBException e) {
-			throw new JumboCommonException("Unexpected error marshalling: ", e);
+			throw new FonerCommonException("Unexpected error marshalling: ", e);
 		} finally {
 			if (writer != null) {
 				try {
 					writer.close();
 				} catch (IOException e) {
-					throw new JumboCommonException("Unexpected error closing StringWriter: ", e);
+					throw new FonerCommonException("Unexpected error closing StringWriter: ", e);
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 package com.foner.commons.http;
 
-import com.foner.commons.exception.JumboCommonException;
+import com.foner.commons.exception.FonerCommonException;
 import java.io.IOException;
 import java.util.Map;
 import okhttp3.MediaType;
@@ -40,11 +40,11 @@ public final class OkHttpClientUtils {
 	 * @param mediaType
 	 *            the media type
 	 * @return the response as bytes
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
 	public static byte[] getResponseAsBytes(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
-			String mediaType) throws JumboCommonException {
+			String mediaType) throws FonerCommonException {
 		byte[] result = null;
 		try (Response response = getResponse(endPoint, httpMethodType, httpHeaders, requestMessage, mediaType)) {
 			if (!response.isSuccessful()) {
@@ -56,7 +56,7 @@ public final class OkHttpClientUtils {
 				result = body.bytes();
 			}
 		} catch (IOException | NullPointerException e) {
-			throw new JumboCommonException("Error getting http response body", e);
+			throw new FonerCommonException("Error getting http response body", e);
 		}
 
 		return result;
@@ -76,11 +76,11 @@ public final class OkHttpClientUtils {
 	 * @param mediaType
 	 *            the media type
 	 * @return the response as string
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
 	public static String getResponseAsString(String endPoint, HttpMethodType httpMethodType, Map<String, String> httpHeaders, String requestMessage,
-			String mediaType) throws JumboCommonException {
+			String mediaType) throws FonerCommonException {
 		String result = null;
 		try (Response response = getResponse(endPoint, httpMethodType, httpHeaders, requestMessage, mediaType)) {
 			if (!response.isSuccessful()) {
@@ -92,7 +92,7 @@ public final class OkHttpClientUtils {
 				result = body.string();
 			}
 		} catch (IOException | NullPointerException e) {
-			throw new JumboCommonException("Error getting http response body", e);
+			throw new FonerCommonException("Error getting http response body", e);
 		}
 
 		return result;

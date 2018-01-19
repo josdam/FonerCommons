@@ -1,6 +1,6 @@
 package com.foner.commons.http;
 
-import com.foner.commons.exception.JumboCommonException;
+import com.foner.commons.exception.FonerCommonException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -109,7 +109,7 @@ public class OkHttpClientManager {
 	/**
 	 * Builds the {@link OkHttpClient}}.
 	 *
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
 	private static void buildOkHttpClient() {
@@ -177,10 +177,10 @@ public class OkHttpClientManager {
 	 *
 	 * @param timeout
 	 *            the timeout
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
-	public synchronized void writeConnectionTimeout(int timeout) throws JumboCommonException {
+	public synchronized void writeConnectionTimeout(int timeout) throws FonerCommonException {
 		connectionTimeout = timeout;
 		buildOkHttpClient();
 	}
@@ -190,10 +190,10 @@ public class OkHttpClientManager {
 	 *
 	 * @param timeout
 	 *            the timeout
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
-	public synchronized void writeReadTimeout(int timeout) throws JumboCommonException {
+	public synchronized void writeReadTimeout(int timeout) throws FonerCommonException {
 		readTimeout = timeout;
 		buildOkHttpClient();
 	}
@@ -203,10 +203,10 @@ public class OkHttpClientManager {
 	 *
 	 * @param timeout
 	 *            the timeout
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
-	public synchronized void writeRequestTimeout(int timeout) throws JumboCommonException {
+	public synchronized void writeRequestTimeout(int timeout) throws FonerCommonException {
 		requestTimeout = timeout;
 		buildOkHttpClient();
 	}
@@ -218,10 +218,10 @@ public class OkHttpClientManager {
 	 *            the max idle
 	 * @param keepAliveInMinutes
 	 *            the keep alive in minutes
-	 * @throws JumboCommonException
+	 * @throws FonerCommonException
 	 *             the jumbo common exception
 	 */
-	public synchronized void writePoolConfiguration(int maxIdle, int keepAliveInMinutes) throws JumboCommonException {
+	public synchronized void writePoolConfiguration(int maxIdle, int keepAliveInMinutes) throws FonerCommonException {
 		maxIdleConnectionsPool = maxIdle;
 		keepAliveDurationInMinutes = keepAliveInMinutes;
 		buildOkHttpClient();

@@ -1,11 +1,11 @@
 package com.foner.commons.exception;
 
 /**
- * The class JumboCommonException.
+ * The class FonerCommonException.
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class JumboCommonException extends Exception {
+public class FonerCommonException extends Exception {
 
 	private static final long serialVersionUID = -1553362655821123337L;
 
@@ -14,7 +14,7 @@ public class JumboCommonException extends Exception {
 	 * The cause is not initialized, and may subsequently be initialized by a
 	 * call to {@link #initCause}.
 	 */
-	public JumboCommonException() {
+	public FonerCommonException() {
 		super();
 	}
 
@@ -27,7 +27,7 @@ public class JumboCommonException extends Exception {
 	 *            the detail message. The detail message is saved for
 	 *            later retrieval by the {@link #getMessage()} method.
 	 */
-	public JumboCommonException(String message) {
+	public FonerCommonException(String message) {
 		super(message);
 	}
 
@@ -48,7 +48,7 @@ public class JumboCommonException extends Exception {
 	 *            permitted, and indicates that the cause is nonexistent or
 	 *            unknown.)
 	 */
-	public JumboCommonException(String message, Throwable cause) {
+	public FonerCommonException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
@@ -66,7 +66,7 @@ public class JumboCommonException extends Exception {
 	 *            permitted, and indicates that the cause is nonexistent or
 	 *            unknown.)
 	 */
-	public JumboCommonException(Throwable cause) {
+	public FonerCommonException(Throwable cause) {
 		super(cause);
 	}
 
