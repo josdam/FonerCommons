@@ -1,6 +1,9 @@
 package com.foner.commons.pool;
 
+import com.foner.commons.Parameter;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
@@ -21,6 +24,9 @@ public class SimplePooledObjectFactory<T> extends BasePooledObjectFactory<T> {
 	/** The object. */
 	private final Class<T>		object;
 
+	/** The parameters. */
+	private Object[]			parameters;
+
 	/**
 	 * Instance new SimplePooledObjectFactory with given class to be pooled.
 	 * 
@@ -29,6 +35,19 @@ public class SimplePooledObjectFactory<T> extends BasePooledObjectFactory<T> {
 	 */
 	public SimplePooledObjectFactory(Class<T> object) {
 		this.object = object;
+	}
+
+	/**
+	 * Instance new SimplePooledObjectFactory with given class to be pooled and parameters needed by the constructor.
+	 * 
+	 * @param object
+	 *            the object to be pooled
+	 * @param parameters
+	 *            the parameters
+	 */
+	public SimplePooledObjectFactory(Class<T> object, Object... parameters) {
+		this.object = object;
+		this.parameters = parameters;
 	}
 
 	/*
@@ -49,6 +68,8 @@ public class SimplePooledObjectFactory<T> extends BasePooledObjectFactory<T> {
 				}
 				instance = (T) constructor.newInstance();
 				constructor.setAccessible(accessible);
+			} else {
+				instance = (T) constructor.newInstance(parameters);
 			}
 		}
 		logger.debug("Object created: " + instance);

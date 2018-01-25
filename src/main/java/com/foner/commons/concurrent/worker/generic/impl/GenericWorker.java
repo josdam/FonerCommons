@@ -1,6 +1,6 @@
 package com.foner.commons.concurrent.worker.generic.impl;
 
-import com.foner.commons.MethodParameter;
+import com.foner.commons.Parameter;
 import com.foner.commons.concurrent.worker.generic.IGenericWorker;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -32,7 +32,7 @@ public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
 	private String					methodName;
 
 	/** The method parameters. */
-	private List<MethodParameter>	methodParameters	= new ArrayList<>(0);
+	private List<Parameter>	methodParameters	= new ArrayList<>(0);
 
 	/**
 	 * Instantiates a new launcher.
@@ -90,7 +90,7 @@ public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
 	 * 
 	 * @return the method parameters
 	 */
-	public List<MethodParameter> getMethodParameters() {
+	public List<Parameter> getMethodParameters() {
 		return methodParameters;
 	}
 
@@ -100,7 +100,7 @@ public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
 	 * @param methodParameters
 	 *            the new method parameters
 	 */
-	public void setMethodParameters(List<MethodParameter> methodParameters) {
+	public void setMethodParameters(List<Parameter> methodParameters) {
 		this.methodParameters = methodParameters;
 	}
 
@@ -123,7 +123,7 @@ public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
 					Class<?> types[] = new Class<?>[methodParameters.size()];
 					Object values[] = new Object[methodParameters.size()];
 					int i = 0;
-					for (MethodParameter methodParameter : methodParameters) {
+					for (Parameter methodParameter : methodParameters) {
 						if (methodParameter.getType() != null) {
 							types[i] = methodParameter.getType();
 						}

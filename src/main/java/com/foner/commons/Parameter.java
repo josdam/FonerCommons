@@ -3,11 +3,11 @@ package com.foner.commons;
 import java.io.Serializable;
 
 /**
- * The class MethodParameter.
+ * The class Parameter.
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class MethodParameter implements Serializable {
+public class Parameter implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= 1380222922781877717L;
@@ -22,27 +22,27 @@ public class MethodParameter implements Serializable {
 	private Object[]			values;
 
 	/**
-	 * Instantiates a new method parameter.
+	 * Instantiates a new parameter.
 	 * 
 	 * @param type
 	 *            the type
 	 * @param value
 	 *            the value
 	 */
-	public MethodParameter(Class<?> type, Object value) {
+	public Parameter(Class<?> type, Object value) {
 		this.type = type;
 		this.value = value;
 	}
 
 	/**
-	 * Instantiates a new method parameter.
+	 * Instantiates a new parameter.
 	 * 
 	 * @param type
 	 *            the type
 	 * @param values
 	 *            the values
 	 */
-	public MethodParameter(Class<?> type, Object[] values) {
+	public Parameter(Class<?> type, Object[] values) {
 		this.type = type;
 		this.values = values;
 	}
