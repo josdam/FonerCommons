@@ -1,8 +1,8 @@
 package com.foner.commons.json.pool;
 
 import com.foner.commons.json.Json;
-import com.foner.commons.pool.IPoolManager;
 import com.foner.commons.pool.Pool;
+import com.foner.commons.pool.PoolManager;
 import com.foner.commons.pool.SimplePooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
@@ -23,7 +23,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class JsonPoolManager implements IPoolManager<Json> {
+public class JsonPoolManager implements PoolManager<Json> {
 
 	/** The instance. */
 	private static final JsonPoolManager	instance	= new JsonPoolManager();
@@ -53,7 +53,7 @@ public class JsonPoolManager implements IPoolManager<Json> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.commons.pool.IPoolManager#getPool()
+	 * @see com.foner.commons.pool.PoolManager#getPool()
 	 */
 	@Override
 	public Pool<Json> getPool() {
@@ -63,7 +63,7 @@ public class JsonPoolManager implements IPoolManager<Json> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.commons.pool.IPoolManager#reloadPool()
+	 * @see com.foner.commons.pool.PoolManager#reloadPool()
 	 */
 	@Override
 	public void reloadPool() {

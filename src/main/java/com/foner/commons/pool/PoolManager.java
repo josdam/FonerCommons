@@ -1,13 +1,13 @@
 package com.foner.commons.pool;
 
 /**
- * The interface IPoolManager.
+ * The interface PoolManager.
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <T>
  *            Type of element pooled in this pool manager.
  */
-public interface IPoolManager<T> {
+public interface PoolManager<T> {
 
 	/** The Constant DEFAULT_MIN_IDLE. */
 	static final int	DEFAULT_MIN_IDLE							= 5;

@@ -1,9 +1,7 @@
 package com.foner.commons.pool;
 
-import com.foner.commons.Parameter;
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
@@ -69,7 +67,9 @@ public class SimplePooledObjectFactory<T> extends BasePooledObjectFactory<T> {
 				instance = (T) constructor.newInstance();
 				constructor.setAccessible(accessible);
 			} else {
-				instance = (T) constructor.newInstance(parameters);
+				if (ArrayUtils.isNotEmpty(parameters)) {
+					instance = (T) constructor.newInstance(parameters);
+				}
 			}
 		}
 		logger.debug("Object created: " + instance);

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * The Interface IFilter.
+ * The Interface Filter.
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <T>
@@ -12,7 +12,7 @@ import java.util.List;
  * @param <S>
  *            the unspecified class
  */
-public interface IFilter<T, S> extends Serializable {
+public interface Filter<T, S> extends Serializable {
 
 	/**
 	 * Do filter.
@@ -23,5 +23,5 @@ public interface IFilter<T, S> extends Serializable {
 	 *            the predicates
 	 * @return the filtered list
 	 */
-	List<T> doFilter(List<T> elements, List<IPredicate<S>> predicates);
+	List<T> doFilter(List<T> elements, List<Predicate<S>> predicates);
 }

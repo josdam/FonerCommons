@@ -3,13 +3,13 @@ package com.foner.commons.filter;
 import java.io.Serializable;
 
 /**
- * The Interface IPredicate.
+ * The Interface Predicate.
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <S>
  *            the unspecified class
  */
-public interface IPredicate<S> extends Serializable {
+public interface Predicate<S> extends Serializable {
 
 	/**
 	 * Do test.

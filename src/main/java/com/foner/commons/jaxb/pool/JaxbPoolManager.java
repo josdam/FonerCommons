@@ -1,8 +1,8 @@
 package com.foner.commons.jaxb.pool;
 
 import com.foner.commons.jaxb.Jaxb;
-import com.foner.commons.pool.IPoolManager;
 import com.foner.commons.pool.Pool;
+import com.foner.commons.pool.PoolManager;
 import com.foner.commons.pool.SimplePooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
@@ -15,15 +15,15 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  * 
  * <pre>
  * // borrowing object from pool
- * Json json = JsonPoolManager.getInstance().getPool().borrowObject();
+ * Jaxb jaxb = JaxbPoolManager.getInstance().getPool().borrowObject();
  * ...
  * // returning object to pool
- * JsonPoolManager.getInstance().getPool().returnObject(json);
+ * JaxbPoolManager.getInstance().getPool().returnObject(jaxb);
  * </pre>
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class JaxbPoolManager implements IPoolManager<Jaxb> {
+public class JaxbPoolManager implements PoolManager<Jaxb> {
 
 	/** The instance. */
 	private static final JaxbPoolManager	instance	= new JaxbPoolManager();
@@ -53,7 +53,7 @@ public class JaxbPoolManager implements IPoolManager<Jaxb> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.commons.pool.IPoolManager#getPool()
+	 * @see com.foner.commons.pool.PoolManager#getPool()
 	 */
 	@Override
 	public Pool<Jaxb> getPool() {
@@ -63,7 +63,7 @@ public class JaxbPoolManager implements IPoolManager<Jaxb> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.commons.pool.IPoolManager#reloadPool()
+	 * @see com.foner.commons.pool.PoolManager#reloadPool()
 	 */
 	@Override
 	public void reloadPool() {
