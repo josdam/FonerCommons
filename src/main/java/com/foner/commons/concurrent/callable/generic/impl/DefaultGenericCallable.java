@@ -1,7 +1,7 @@
 package com.foner.commons.concurrent.callable.generic.impl;
 
 import com.foner.commons.Parameter;
-import com.foner.commons.concurrent.callable.generic.IGenericCallable;
+import com.foner.commons.concurrent.callable.generic.GenericCallable;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,13 +11,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
- * The class GenericCallable.
+ * The class DefaultGenericCallable.
  * 
  * @param <T>
  *            the generic type
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class GenericCallable<T> implements IGenericCallable<Object>, Serializable {
+public class DefaultGenericCallable<T> implements GenericCallable<Object>, Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -1796233873145607876L;
@@ -42,7 +42,7 @@ public class GenericCallable<T> implements IGenericCallable<Object>, Serializabl
 	 * @param methodName
 	 *            the method name
 	 */
-	public GenericCallable(T instance, String methodName) {
+	public DefaultGenericCallable(T instance, String methodName) {
 		this.instance = instance;
 		this.methodName = methodName;
 	}

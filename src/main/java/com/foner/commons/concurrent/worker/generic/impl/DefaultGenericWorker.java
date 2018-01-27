@@ -1,7 +1,7 @@
 package com.foner.commons.concurrent.worker.generic.impl;
 
 import com.foner.commons.Parameter;
-import com.foner.commons.concurrent.worker.generic.IGenericWorker;
+import com.foner.commons.concurrent.worker.generic.GenericWorker;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,28 +11,28 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
- * The class GenericWorker.
+ * The class DefaultGenericWorker.
  * 
  * @param <T>
  *            the generic type
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
+public class DefaultGenericWorker<T> implements GenericWorker<T> {
 
 	/** The Constant serialVersionUID. */
-	private static final long		serialVersionUID	= -1796233873145607876L;
+	private static final long	serialVersionUID	= -1796233873145607876L;
 
 	/** The logger. */
-	private static final Logger		logger				= Logger.getLogger(GenericWorker.class);
+	private static final Logger	logger				= Logger.getLogger(GenericWorker.class);
 
 	/** The instance. */
-	private T						instance;
+	private T					instance;
 
 	/** The method name. */
-	private String					methodName;
+	private String				methodName;
 
-	/** The method parameters. */
-	private List<Parameter>	methodParameters	= new ArrayList<>(0);
+	/** The parameters. */
+	private List<Parameter>		parameters			= new ArrayList<>(0);
 
 	/**
 	 * Instantiates a new launcher.
@@ -42,7 +42,7 @@ public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
 	 * @param methodName
 	 *            the method name
 	 */
-	public GenericWorker(T instance, String methodName) {
+	public DefaultGenericWorker(T instance, String methodName) {
 		this.instance = instance;
 		this.methodName = methodName;
 	}
@@ -86,22 +86,22 @@ public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
 	}
 
 	/**
-	 * Gets the method parameters.
+	 * Gets the parameters.
 	 * 
-	 * @return the method parameters
+	 * @return the parameters
 	 */
-	public List<Parameter> getMethodParameters() {
-		return methodParameters;
+	public List<Parameter> getParameters() {
+		return parameters;
 	}
 
 	/**
-	 * Sets the method parameters.
+	 * Sets the parameters.
 	 * 
-	 * @param methodParameters
-	 *            the new method parameters
+	 * @param parameters
+	 *            the new parameters
 	 */
-	public void setMethodParameters(List<Parameter> methodParameters) {
-		this.methodParameters = methodParameters;
+	public void setParameters(List<Parameter> parameters) {
+		this.parameters = parameters;
 	}
 
 	/*
@@ -116,14 +116,14 @@ public class GenericWorker<T> implements IGenericWorker<T>, Serializable {
 			logger.debug("Running generic task: " + taskName);
 			long time = System.currentTimeMillis();
 			try {
-				if (methodParameters.isEmpty()) {
+				if (parameters.isEmpty()) {
 					Method method = instance.getClass().getMethod(methodName);
 					method.invoke(instance);
 				} else {
-					Class<?> types[] = new Class<?>[methodParameters.size()];
-					Object values[] = new Object[methodParameters.size()];
+					Class<?> types[] = new Class<?>[parameters.size()];
+					Object values[] = new Object[parameters.size()];
 					int i = 0;
-					for (Parameter methodParameter : methodParameters) {
+					for (Parameter methodParameter : parameters) {
 						if (methodParameter.getType() != null) {
 							types[i] = methodParameter.getType();
 						}

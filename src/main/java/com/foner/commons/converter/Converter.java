@@ -3,7 +3,7 @@ package com.foner.commons.converter;
 import java.io.Serializable;
 
 /**
- * The Interface IConverter.
+ * The Interface Converter.
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  * @param <T>
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @param <S>
  *            the generic type converted
  */
-public interface IConverter<T, S> extends Serializable {
+public interface Converter<T, S> extends Serializable {
 
 	/**
 	 * Convert.

@@ -1,23 +1,23 @@
 package com.foner.commons.concurrent.executor.worker;
 
-import com.foner.commons.concurrent.executor.IExecutorServiceManager;
-import com.foner.commons.concurrent.worker.generic.IGenericWorker;
+import com.foner.commons.concurrent.executor.ExecutorServiceManager;
+import com.foner.commons.concurrent.worker.generic.GenericWorker;
 
 /**
- * The Interface IGenericWorkerExecutorServiceManager.
+ * The Interface GenericWorkerExecutorServiceManager.
  * 
  * @param <T>
  *            the generic type
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public interface IGenericWorkerExecutorServiceManager<T> extends IExecutorServiceManager {
+public interface GenericWorkerExecutorServiceManager<T> extends ExecutorServiceManager {
 
 	/**
 	 * Gets the generic worker.
 	 * 
 	 * @return generic worker
 	 */
-	IGenericWorker<T> getGenericWorker();
+	GenericWorker<T> getGenericWorker();
 
 	/**
 	 * Sets the generic worker.
@@ -25,7 +25,7 @@ public interface IGenericWorkerExecutorServiceManager<T> extends IExecutorServic
 	 * @param genericWorker
 	 *            the new generic worker
 	 */
-	void setGenericWorker(IGenericWorker<T> genericWorker);
+	void setGenericWorker(GenericWorker<T> genericWorker);
 
 	/**
 	 * Sets the generic worker and submit it.
@@ -33,5 +33,5 @@ public interface IGenericWorkerExecutorServiceManager<T> extends IExecutorServic
 	 * @param genericWorker
 	 *            the new generic worker
 	 */
-	void setGenericWorkerAndSubmit(IGenericWorker<T> genericWorker);
+	void setGenericWorkerAndSubmit(GenericWorker<T> genericWorker);
 }

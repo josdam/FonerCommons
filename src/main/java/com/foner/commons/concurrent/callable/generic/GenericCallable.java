@@ -9,6 +9,6 @@ import com.foner.commons.concurrent.callable.ICallable;
  * @param <C>
  *            the generic type
  */
-public interface IGenericCallable<C> extends ICallable<C> {
+public interface GenericCallable<C> extends ICallable<C> {
 
 }

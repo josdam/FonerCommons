@@ -1,10 +1,12 @@
 package com.foner.commons.concurrent.worker;
 
+import java.io.Serializable;
+
 /**
- * The Interface IWorker.
+ * The Interface Worker.
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public interface IWorker extends Runnable {
+public interface Worker extends Runnable, Serializable {
 
 }

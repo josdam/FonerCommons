@@ -1,7 +1,7 @@
 package com.foner.commons.concurrent.executor.worker.impl;
 
-import com.foner.commons.concurrent.executor.worker.IGenericWorkerExecutorServiceManager;
-import com.foner.commons.concurrent.worker.generic.IGenericWorker;
+import com.foner.commons.concurrent.executor.worker.GenericWorkerExecutorServiceManager;
+import com.foner.commons.concurrent.worker.generic.GenericWorker;
 
 /**
  * The class AbstractGenericWorkerExecutorServiceManager.
@@ -10,33 +10,33 @@ import com.foner.commons.concurrent.worker.generic.IGenericWorker;
  *            the generic type
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public abstract class AbstractGenericWorkerExecutorServiceManager<T> implements IGenericWorkerExecutorServiceManager<T> {
+public abstract class AbstractGenericWorkerExecutorServiceManager<T> implements GenericWorkerExecutorServiceManager<T> {
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -2704255266522990349L;
 
 	/** The related generic worker. */
-	private IGenericWorker<T>	genericWorker;
+	private GenericWorker<T>	genericWorker;
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.commons.concurrent.executor.worker.IGenericWorkerExecutorServiceManager#getGenericWorker()
+	 * @see com.foner.commons.concurrent.executor.worker.GenericWorkerExecutorServiceManager#getGenericWorker()
 	 */
 	@Override
-	public IGenericWorker<T> getGenericWorker() {
+	public GenericWorker<T> getGenericWorker() {
 		return genericWorker;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.commons.concurrent.executor.worker.IGenericWorkerExecutorServiceManager#setGenericWorker(com.jumbotours.b2c.core.concurrent.worker.
+	 * @see com.foner.commons.concurrent.executor.worker.GenericWorkerExecutorServiceManager#setGenericWorker(com.jumbotours.b2c.core.concurrent.worker.
 	 * generic.
-	 * IGenericWorker)
+	 * GenericWorker)
 	 */
 	@Override
-	public void setGenericWorker(IGenericWorker<T> genericWorker) {
+	public void setGenericWorker(GenericWorker<T> genericWorker) {
 		this.genericWorker = genericWorker;
 	}
 
@@ -44,12 +44,12 @@ public abstract class AbstractGenericWorkerExecutorServiceManager<T> implements 
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jumbotours.commons.concurrent.executor.worker.IGenericWorkerExecutorServiceManager#setGenericWorkerAndSubmit(com.jumbotours.b2c.core.concurrent.
+	 * com.foner.commons.concurrent.executor.worker.GenericWorkerExecutorServiceManager#setGenericWorkerAndSubmit(com.jumbotours.b2c.core.concurrent.
 	 * worker.
-	 * generic.IGenericWorker)
+	 * generic.GenericWorker)
 	 */
 	@Override
-	public void setGenericWorkerAndSubmit(IGenericWorker<T> genericWorker) {
+	public void setGenericWorkerAndSubmit(GenericWorker<T> genericWorker) {
 		setGenericWorker(genericWorker);
 		getExecutorService().submit(genericWorker);
 	}

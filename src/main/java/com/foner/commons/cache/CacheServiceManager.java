@@ -8,7 +8,7 @@ import net.sf.ehcache.Ehcache;
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public interface ICacheServiceManager extends Serializable {
+public interface CacheServiceManager extends Serializable {
 
 	/**
 	 * Get Cache by Cache's Name.

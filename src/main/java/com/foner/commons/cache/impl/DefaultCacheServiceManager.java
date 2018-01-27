@@ -1,7 +1,8 @@
 package com.foner.commons.cache.impl;
 
-import com.foner.commons.cache.ICacheServiceManager;
+import com.foner.commons.cache.CacheServiceManager;
 import java.net.URL;
+import net.sf.ehcache.CacheException;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import org.apache.commons.lang3.StringUtils;
@@ -12,7 +13,7 @@ import org.apache.log4j.Logger;
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class CacheServiceManager implements ICacheServiceManager {
+public class DefaultCacheServiceManager implements CacheServiceManager {
 
 	/** The Constant serialVersionUID. */
 	private static final long					serialVersionUID	= -7638743888524100750L;
@@ -24,22 +25,22 @@ public class CacheServiceManager implements ICacheServiceManager {
 	private static CacheManager					cacheManager		= null;
 
 	/** private static instance. */
-	private static final ICacheServiceManager	instance			= new CacheServiceManager();
+	private static final CacheServiceManager	instance			= new DefaultCacheServiceManager();
 
 	/** The logger. */
 	private static final Logger					logger				= Logger.getLogger(CacheServiceManager.class);
 
 	/**
-	 * private constructor.
+	 * Hides default constructor.
 	 */
-	private CacheServiceManager() {}
+	private DefaultCacheServiceManager() {}
 
 	/**
 	 * Singleton pattern implementation.
 	 * 
 	 * @return singleton instance.
 	 */
-	public static ICacheServiceManager getInstance() {
+	public static CacheServiceManager getInstance() {
 		return instance;
 	}
 
@@ -61,14 +62,14 @@ public class CacheServiceManager implements ICacheServiceManager {
 			if (StringUtils.isNotEmpty(configFile)) {
 				try {
 					cacheManager = CacheManager.create(configFile);
-				} catch (Exception ex) {
+				} catch (CacheException ex) {
 					logger.warn("An error was taken creating Cache Manager: " + ex);
 				}
 				// Loading from resource.
 			} else {
 				try {
 					cacheManager = CacheManager.create(fileName);
-				} catch (Exception ex) {
+				} catch (CacheException ex) {
 					logger.warn("An error was taken creating Cache Manager: " + ex);
 				}
 			}
@@ -81,7 +82,7 @@ public class CacheServiceManager implements ICacheServiceManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.b2c.core.cache.ICacheServiceManager#getCache(java.lang.String)
+	 * @see com.foner.commons.cache.CacheServiceManager#getCache(java.lang.String)
 	 */
 	@Override
 	public Ehcache getCache(String cacheName) {
@@ -96,7 +97,7 @@ public class CacheServiceManager implements ICacheServiceManager {
 	}
 
 	/**
-	 * ShutDown CacheServiceManager.
+	 * ShutDown DefaultCacheServiceManager.
 	 */
 	public static void shutDownCacheManager() {
 		cacheManager.shutdown();

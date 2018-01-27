@@ -7,31 +7,31 @@ import java.io.Serializable;
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public interface ICacheService extends Serializable {
+public interface CacheService extends Serializable {
 
 	/** ********************* CACHE'S KEY SEPARATOR *************************. */
 	/** Cache Composed Key Separator */
-	public static final String	CACHE_COMPOSED_KEY_SEPARATOR	= "@";
+	static final String	CACHE_COMPOSED_KEY_SEPARATOR	= "@";
 
 	/** ********************* CACHE'S OPERATIONS ****************************. */
 	/** Register Element Action. */
-	public static final String	CACHE_REGISTER_ELEMENT_ACTION	= "register";
+	static final String	CACHE_REGISTER_ELEMENT_ACTION	= "register";
 
 	/** Update Element Action. */
-	public static final String	CACHE_UPDATE_ELEMENT_ACTION		= "update";
+	static final String	CACHE_UPDATE_ELEMENT_ACTION		= "update";
 
 	/** Remove Element Action. */
-	public static final String	CACHE_REMOVE_ELEMENT_ACTION		= "remove";
+	static final String	CACHE_REMOVE_ELEMENT_ACTION		= "remove";
 
 	/** Retrieve Element Action. */
-	public static final String	CACHE_RETRIEVE_ELEMENT_ACTION	= "retrieve";
+	static final String	CACHE_RETRIEVE_ELEMENT_ACTION	= "retrieve";
 
 	/**
 	 * Gets current cache manager.
 	 * 
 	 * @return the cache manager
 	 */
-	ICacheServiceManager getCacheManager();
+	CacheServiceManager getCacheManager();
 
 	/**
 	 * Checks if a Cache has cached Elements.

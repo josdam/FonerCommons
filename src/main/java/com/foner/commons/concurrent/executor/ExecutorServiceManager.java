@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.concurrent.ExecutorService;
 
 /**
- * The Interface IExecutorServiceManager.
+ * The Interface ExecutorServiceManager.
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public interface IExecutorServiceManager extends Serializable {
+public interface ExecutorServiceManager extends Serializable {
 
     /**
      * Gets the executor service.

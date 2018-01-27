@@ -1,7 +1,7 @@
 package com.foner.commons.cache.impl;
 
-import com.foner.commons.cache.ICacheService;
-import com.foner.commons.cache.ICacheServiceManager;
+import com.foner.commons.cache.CacheService;
+import com.foner.commons.cache.CacheServiceManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 import org.apache.commons.lang3.StringUtils;
@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class CacheService implements ICacheService {
+public class DefaultCacheService implements CacheService {
 
 	/** The Constant serialVersionUID. */
 	private static final long			serialVersionUID	= -4762787449513451881L;
@@ -21,29 +21,29 @@ public class CacheService implements ICacheService {
 	private static final Logger			logger				= Logger.getLogger(CacheService.class);
 
 	/** private instance. */
-	private static final ICacheService	instance			= new CacheService();
+	private static final CacheService	instance			= new DefaultCacheService();
 
 	/** Cache Service Manager instance. */
-	private final ICacheServiceManager	cacheManager		= CacheServiceManager.getInstance();
+	private final CacheServiceManager	cacheManager		= DefaultCacheServiceManager.getInstance();
 
 	/**
-	 * private constructor.
+	 * Hides default constructor.
 	 */
-	private CacheService() {}
+	private DefaultCacheService() {}
 
 	/**
 	 * singleton pattern implementation.
 	 * 
 	 * @return singleton instance.
 	 */
-	public static ICacheService getInstance() {
+	public static CacheService getInstance() {
 		return instance;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.b2c.core.cache.ICacheService#existsCachedElements(java.lang.String)
+	 * @see com.foner.commons.cache.DefaultCacheService#existsCachedElements(java.lang.String)
 	 */
 	@Override
 	public boolean existsCachedElements(String cacheName) {
@@ -54,8 +54,7 @@ public class CacheService implements ICacheService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.b2c.core.cache.ICacheService#cache(java.lang.String, java.lang.String, com.jumbotours.b2c.core.bean.Object,
-	 * java.lang.String[])
+	 * @see com.foner.commons.cache.DefaultCacheService#cache(java.lang.String, java.lang.String, java.lang.Object, java.lang.String[])
 	 */
 	@Override
 	public Object cache(String cacheName, String action, Object value, String... keys) {
@@ -68,8 +67,7 @@ public class CacheService implements ICacheService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.b2c.core.cache.ICacheService#cache(java.lang.String, java.lang.String, com.jumbotours.b2c.core.bean.Object,
-	 * java.lang.Object)
+	 * @see com.foner.commons.cache.DefaultCacheService#cache(java.lang.String, java.lang.String, java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public Object cache(String cacheName, String action, Object value, Object key) {
@@ -80,10 +78,10 @@ public class CacheService implements ICacheService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.b2c.core.cache.ICacheService#getCacheManager()
+	 * @see com.foner.commons.cache.DefaultCacheService#getCacheManager()
 	 */
 	@Override
-	public ICacheServiceManager getCacheManager() {
+	public CacheServiceManager getCacheManager() {
 		return cacheManager;
 	}
 

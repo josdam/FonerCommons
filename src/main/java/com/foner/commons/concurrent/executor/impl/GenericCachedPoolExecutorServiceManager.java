@@ -1,24 +1,24 @@
 package com.foner.commons.concurrent.executor.impl;
 
-import com.foner.commons.concurrent.executor.IExecutorServiceManager;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import com.foner.commons.concurrent.executor.ExecutorServiceManager;
 
 /**
  * The class GenericCachedPoolExecutorServiceManager.
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class GenericCachedPoolExecutorServiceManager implements IExecutorServiceManager {
+public class GenericCachedPoolExecutorServiceManager implements ExecutorServiceManager {
 
 	/** The Constant serialVersionUID. */
-	private static final long						serialVersionUID	= 2506633113561973138L;
+	private static final long					serialVersionUID	= 2506633113561973138L;
 
 	/** private static instance. */
-	private static final IExecutorServiceManager	instance			= new GenericCachedPoolExecutorServiceManager();
+	private static final ExecutorServiceManager	instance			= new GenericCachedPoolExecutorServiceManager();
 
 	/** The executor service. */
-	private ExecutorService							executorService;
+	private ExecutorService						executorService;
 
 	/**
 	 * Instantiates a new executor manager.
@@ -30,14 +30,14 @@ public class GenericCachedPoolExecutorServiceManager implements IExecutorService
 	 * 
 	 * @return single instance of ExecutorManager
 	 */
-	public static IExecutorServiceManager getInstance() {
+	public static ExecutorServiceManager getInstance() {
 		return instance;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jumbotours.commons.concurrent.executor.IExecutorManager#getExecutorService()
+	 * @see com.foner.commons.concurrent.executor.IExecutorManager#getExecutorService()
 	 */
 	@Override
 	public synchronized ExecutorService getExecutorService() {
