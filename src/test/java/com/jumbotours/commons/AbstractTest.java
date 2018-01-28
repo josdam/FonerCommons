@@ -1,8 +1,8 @@
 package com.jumbotours.commons;
 
 import org.apache.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 /**
  * The class AbstractTest.
@@ -16,15 +16,9 @@ public abstract class AbstractTest {
 	 */
 	protected static final Logger logger = Logger.getLogger(AbstractTest.class);
 
-	/**
-	 * Sets the up.
-	 */
-	@Before
-	public void setUp() {}
+	@BeforeClass
+	public static void setUpClass() {}
 
-	/**
-	 * Tear down.
-	 */
-	@After
-	public void tearDown() {}
+	@AfterClass
+	public static void tearDownClass() {}
 }

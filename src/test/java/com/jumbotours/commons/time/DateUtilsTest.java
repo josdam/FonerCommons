@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.xml.datatype.XMLGregorianCalendar;
 import org.joda.time.DateTime;
-import org.junit.AfterClass;
+import org.junit.After;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -20,11 +20,17 @@ import org.junit.Test;
  */
 public class DateUtilsTest extends AbstractTest {
 
-	@BeforeClass
-	public static void setUpClass() {}
+	/**
+	 * Sets the up.
+	 */
+	@Before
+	public void setUp() {}
 
-	@AfterClass
-	public static void tearDownClass() {}
+	/**
+	 * Tear down.
+	 */
+	@After
+	public void tearDown() {}
 
 	/**
 	 * Test of dateToString method, of class DateUtils.
