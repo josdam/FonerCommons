@@ -3,10 +3,10 @@ package com.foner.commons.springframework;
 import java.io.Serializable;
 
 /**
- * The Interface ISpringBean.
+ * The Interface SpringBean.
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public interface ISpringBean extends Serializable {
+public interface SpringBean extends Serializable {
 
 }

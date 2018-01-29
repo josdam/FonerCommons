@@ -1,7 +1,7 @@
-package com.jumbotours.commons.time;
+package com.foner.commons.time;
 
 import com.foner.commons.time.DateUtils;
-import com.jumbotours.commons.AbstractTest;
+import com.foner.commons.AbstractTest;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import java.util.Calendar;
 import java.util.Date;

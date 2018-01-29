@@ -60,11 +60,11 @@ public final class SpringBeanLookupManager {
 	 *            the qualifier name
 	 * @return the i handler
 	 */
-	public synchronized ISpringBean lookUpService(String qualifierName) {
-		ISpringBean springBeanInstance = null;
+	public synchronized SpringBean lookUpService(String qualifierName) {
+		SpringBean springBeanInstance = null;
 
 		try {
-			springBeanInstance = (ISpringBean) getWebApplicationContext().getBean(qualifierName);
+			springBeanInstance = (SpringBean) getWebApplicationContext().getBean(qualifierName);
 		} catch (BeansException e) {
 			logger.warn("Spring bean not found: " + e, e);
 		}
@@ -79,9 +79,9 @@ public final class SpringBeanLookupManager {
 	 *            the handler
 	 * @return the i handler
 	 */
-	public synchronized ISpringBean lookUpService(Class<? extends ISpringBean> springBean) {
+	public synchronized SpringBean lookUpService(Class<? extends SpringBean> springBean) {
 
-		ISpringBean springBeanInstance = null;
+		SpringBean springBeanInstance = null;
 
 		try {
 			springBeanInstance = getWebApplicationContext().getBean(springBean);

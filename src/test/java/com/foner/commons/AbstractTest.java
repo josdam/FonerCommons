@@ -1,4 +1,4 @@
-package com.jumbotours.commons;
+package com.foner.commons;
 
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;

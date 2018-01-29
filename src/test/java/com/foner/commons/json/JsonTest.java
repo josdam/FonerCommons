@@ -3,7 +3,7 @@ package com.foner.commons.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.jumbotours.commons.AbstractTest;
+import com.foner.commons.AbstractTest;
 import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.hamcrest.MatcherAssert;

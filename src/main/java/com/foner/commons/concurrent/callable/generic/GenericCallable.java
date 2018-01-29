@@ -1,6 +1,6 @@
 package com.foner.commons.concurrent.callable.generic;
 
-import com.foner.commons.concurrent.callable.ICallable;
+import java.util.concurrent.Callable;
 
 /**
  * The Interface IGenericWorker.
@@ -9,6 +9,6 @@ import com.foner.commons.concurrent.callable.ICallable;
  * @param <C>
  *            the generic type
  */
-public interface GenericCallable<C> extends ICallable<C> {
+public interface GenericCallable<C> extends Callable<C> {
 
 }
