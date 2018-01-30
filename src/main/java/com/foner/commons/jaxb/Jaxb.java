@@ -1,6 +1,7 @@
 package com.foner.commons.jaxb;
 
 import com.foner.commons.exception.FonerCommonException;
+import com.foner.commons.pool.PooleableObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -19,7 +20,7 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public final class Jaxb {
+public final class Jaxb implements PooleableObject {
 
 	/** The logger. */
 	private static final Logger						logger			= Logger.getLogger(Jaxb.class);
@@ -166,6 +167,17 @@ public final class Jaxb {
 			contextStore.put(valueType, jaxbContext);
 		}
 		return jaxbContext;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.commons.pool.PooleableObject#releaseResources()
+	 */
+	@Override
+	public void releaseResources() {
+		logger.debug(String.format("Releasing resources for this object: %s", this));
+		contextStore.clear();
 	}
 
 }

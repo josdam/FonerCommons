@@ -133,4 +133,14 @@ public class JsonTest extends AbstractTest {
 
 	}
 
+	/**
+	 * Test of releaseResources method, of class Json.
+	 */
+	@Test
+	public void testDestroy() {
+		Json json = Json.getInstance();
+		json.releaseResources();
+		Mockito.verify(mockLogger, Mockito.times(1)).debug(ArgumentMatchers.anyString());
+	}
+
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.foner.commons.pool.PooleableObject;
 import java.io.IOException;
 import org.apache.log4j.Logger;
 
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class Json {
+public class Json implements PooleableObject {
 
 	/** The logger. */
 	private static final Logger	logger		= Logger.getLogger(Json.class);
@@ -133,5 +134,18 @@ public class Json {
 			logger.info("Serialize in " + (System.currentTimeMillis() - time) + " ms.");
 		}
 		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.commons.pool.PooleableObject#releaseResources()
+	 */
+	@Override
+	public void releaseResources() {
+		logger.debug(String.format("Releasing resources for this object: %s", this));
+		prettyWriter = null;
+		writer = null;
+		mapper = null;
 	}
 }

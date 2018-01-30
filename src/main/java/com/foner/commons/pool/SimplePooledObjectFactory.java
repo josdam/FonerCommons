@@ -114,7 +114,10 @@ public class SimplePooledObjectFactory<T> extends BasePooledObjectFactory<T> {
 	 */
 	@Override
 	public void destroyObject(PooledObject<T> p) throws Exception {
-		logger.debug("Object will be destroyed: " + p);
+		if (p instanceof PooleableObject) {
+			logger.debug("Object will release resources and will be destroyed: " + p);
+			((PooleableObject) p).releaseResources();
+		}
 		super.destroyObject(p);
 	}
 
