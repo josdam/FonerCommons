@@ -31,6 +31,9 @@ public final class Jaxb implements PooleableObject {
 	/** The Constant contextStore. */
 	private static final Map<Class<?>, JAXBContext>	contextStore	= new ConcurrentHashMap<>();
 
+	/** Indicates if this object is pooled. */
+	private boolean									pooled;
+
 	/**
 	 * Hides default constructor.
 	 */
@@ -167,6 +170,26 @@ public final class Jaxb implements PooleableObject {
 			contextStore.put(valueType, jaxbContext);
 		}
 		return jaxbContext;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.commons.pool.PooleableObject#isPooled()
+	 */
+	@Override
+	public boolean isPooled() {
+		return pooled;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.commons.pool.PooleableObject#setPooled(boolean)
+	 */
+	@Override
+	public void setPooled(boolean pooled) {
+		this.pooled = pooled;
 	}
 
 	/*

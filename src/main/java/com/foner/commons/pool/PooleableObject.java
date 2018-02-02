@@ -8,6 +8,21 @@ package com.foner.commons.pool;
 public interface PooleableObject {
 
 	/**
+	 * Checks if this objected is pooled.
+	 *
+	 * @return true, if is pooled
+	 */
+	boolean isPooled();
+
+	/**
+	 * Sets the pooled.
+	 *
+	 * @param pooled
+	 *            the new pooled
+	 */
+	void setPooled(boolean pooled);
+
+	/**
 	 * Releasing resources for the current pooleable object.
 	 */
 	void releaseResources();

@@ -72,7 +72,12 @@ public class SimplePooledObjectFactory<T> extends BasePooledObjectFactory<T> {
 				}
 			}
 		}
-		logger.debug("Object created: " + instance);
+		if (instance != null) {
+			((PooleableObject) instance).setPooled(true);
+			logger.debug("Object created: " + instance);
+		} else {
+			throw new Exception("Pooled objecto could not be created");
+		}
 		return instance;
 	}
 

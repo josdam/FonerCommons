@@ -31,6 +31,9 @@ public class Json implements PooleableObject {
 	/** The object pretty writer. */
 	private ObjectWriter		prettyWriter;
 
+	/** Indicates if this object is pooled. */
+	private boolean				pooled;
+
 	/**
 	 * Hides default constructor.
 	 */
@@ -139,6 +142,26 @@ public class Json implements PooleableObject {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.foner.commons.pool.PooleableObject#isPooled()
+	 */
+	@Override
+	public boolean isPooled() {
+		return pooled;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.commons.pool.PooleableObject#setPooled(boolean)
+	 */
+	@Override
+	public void setPooled(boolean pooled) {
+		this.pooled = pooled;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.foner.commons.pool.PooleableObject#releaseResources()
 	 */
 	@Override
@@ -148,4 +171,5 @@ public class Json implements PooleableObject {
 		writer = null;
 		mapper = null;
 	}
+
 }
