@@ -1,29 +1,29 @@
-package com.foner.commons.json;
+package com.foner.commons.xml;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.foner.commons.pool.PooleableObject;
 import java.io.IOException;
 import org.apache.log4j.Logger;
 
 /**
- * The class Json.
+ * The class Xml.
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class Json implements PooleableObject {
+public class Xml implements PooleableObject {
 
 	/** The logger. */
-	private static final Logger	logger		= Logger.getLogger(Json.class);
+	private static final Logger	logger		= Logger.getLogger(Xml.class);
 
 	/** The instance. */
-	private static final Json	instance	= new Json();
+	private static final Xml	instance	= new Xml();
 
 	/** The object mapper. */
-	private ObjectMapper		mapper;
+	private XmlMapper			mapper;
 
 	/** The object writer. */
 	private ObjectWriter		writer;
@@ -37,7 +37,7 @@ public class Json implements PooleableObject {
 	/**
 	 * Hides default constructor.
 	 */
-	private Json() {
+	private Xml() {
 		init();
 	}
 
@@ -45,7 +45,7 @@ public class Json implements PooleableObject {
 	 * The init.
 	 */
 	private void init() {
-		mapper = new ObjectMapper();
+		mapper = new XmlMapper();
 		mapper.findAndRegisterModules();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		// Ignore null values when writing json.
@@ -62,41 +62,41 @@ public class Json implements PooleableObject {
 	/**
 	 * Get the instance following singleton pattern.
 	 * 
-	 * @return the Json instance.
+	 * @return the Xml instance.
 	 */
-	public static Json getInstance() {
+	public static Xml getInstance() {
 		return instance;
 	}
 
 	/**
 	 * The new instance.
 	 * 
-	 * @return the Json instance.
+	 * @return the Xml instance.
 	 */
-	public static Json newInstance() {
-		Json json = new Json();
-		logger.debug("Instancing new Json: " + json);
-		return json;
+	public static Xml newInstance() {
+		Xml xml = new Xml();
+		logger.debug("Instancing new Xml: " + xml);
+		return xml;
 	}
 
 	/**
-	 * Deserializes JSON content from given JSON content String into given java type.
+	 * Deserializes XML content from given XML content String into given java type.
 	 *
 	 * @param <T>
 	 *            the generic type
-	 * @param jsonString
-	 *            the json string
+	 * @param xmlString
+	 *            the xml string
 	 * @param valueType
 	 *            the value type
 	 * @return the type refer
 	 */
-	public <T> T deserialize(String jsonString, Class<T> valueType) {
+	public <T> T deserialize(String xmlString, Class<T> valueType) {
 		long time = System.currentTimeMillis();
 		try {
-			logger.debug("Deserializer Json Instance: " + this);
-			return mapper.readValue(jsonString, valueType);
+			logger.debug("Deserializer Xml Instance: " + this);
+			return mapper.readValue(xmlString, valueType);
 		} catch (IOException ex) {
-			logger.error("Error deserializing the given json: ", ex);
+			logger.error("Error deserializing the given xml: ", ex);
 		} finally {
 			logger.info("Deserialize in " + (System.currentTimeMillis() - time) + " ms.");
 		}
@@ -104,7 +104,7 @@ public class Json implements PooleableObject {
 	}
 
 	/**
-	 * Serializes any given object to JSON format.
+	 * Serializes any given object to XML format.
 	 *
 	 * @param object
 	 *            the object
@@ -115,18 +115,18 @@ public class Json implements PooleableObject {
 	}
 
 	/**
-	 * Serializes any given object to JSON pretty format.
+	 * Serializes any given object to XML pretty format.
 	 *
 	 * @param object
 	 *            the object
 	 * @param prettyFormat
 	 *            the pretty flag
-	 * @return the json string in pretty format
+	 * @return the XML string in pretty format
 	 */
 	public String serialize(Object object, boolean prettyFormat) {
 		long time = System.currentTimeMillis();
 		try {
-			logger.debug("Serializer Json Instance: " + this);
+			logger.debug("Serialize Parser Instance: " + this);
 			if (prettyFormat) {
 				return prettyWriter.writeValueAsString(object);
 			}
