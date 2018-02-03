@@ -30,7 +30,7 @@ import org.powermock.reflect.Whitebox;
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Xml.class, Logger.class})
+@PrepareForTest({Xml.class, Logger.class, TestPojo.class})
 public class XmlTest extends AbstractTest {
 
 	/** The mock logger. */
@@ -48,7 +48,6 @@ public class XmlTest extends AbstractTest {
 	@BeforeClass
 	public static void setUpClass() {
 		mockLogger = PowerMockito.mock(Logger.class);
-		// mockLogger.setLevel(Level.DEBUG);
 		PowerMockito.mockStatic(Logger.class);
 		PowerMockito.when(Logger.getLogger(ArgumentMatchers.any(Class.class))).thenReturn(mockLogger);
 	}
@@ -98,7 +97,7 @@ public class XmlTest extends AbstractTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void testDeserialize() throws IOException {
-		Xml xml = Xml.getInstance();
+		Xml xml = Xml.newInstance();
 		Whitebox.setInternalState(xml, "mapper", mockObjectMapper);
 
 		Object o = PowerMockito.mock(Object.class);
@@ -117,7 +116,7 @@ public class XmlTest extends AbstractTest {
 	 */
 	@Test
 	public void testDeserialize_TestPojo() throws JsonProcessingException, IOException {
-		Xml xml = Xml.getInstance();
+		Xml xml = Xml.newInstance();
 		File file = new File(getClass().getClassLoader().getResource("com/foner/commons/xml/Test.xml").getFile());
 		String xmlString = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		MatcherAssert.assertThat(xmlString, Matchers.notNullValue());
@@ -137,7 +136,7 @@ public class XmlTest extends AbstractTest {
 	 */
 	@Test
 	public void testSerialize_Object() throws JsonProcessingException {
-		Xml xml = Xml.getInstance();
+		Xml xml = Xml.newInstance();
 		Whitebox.setInternalState(xml, "writer", mockObjectWriter);
 		PowerMockito.when(mockObjectWriter.writeValueAsString(ArgumentMatchers.any())).thenReturn("{OK}");
 
@@ -157,7 +156,7 @@ public class XmlTest extends AbstractTest {
 	 */
 	@Test
 	public void testSerialize_TestPojo() throws JsonProcessingException, IOException {
-		Xml xml = Xml.getInstance();
+		Xml xml = Xml.newInstance();
 		TestPojo testPojo = new TestPojo();
 		testPojo.setTitle("TestPojo");
 		testPojo.setX(1);

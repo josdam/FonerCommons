@@ -3,4 +3,5 @@
     <x>1</x>
     <y>2</y>
     <title>TestPojo</title>
+    <ignore>TestPojo</ignore>
 </root>
