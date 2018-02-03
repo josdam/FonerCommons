@@ -125,7 +125,44 @@ public class XmlTest extends AbstractTest {
 		MatcherAssert.assertThat(testPojo.getTitle(), Matchers.equalTo("TestPojo"));
 		MatcherAssert.assertThat(testPojo.getX(), Matchers.equalTo(1));
 		MatcherAssert.assertThat(testPojo.getY(), Matchers.equalTo(2));
+	}
 
+	/**
+	 * Test of serialize method, of class Xml. Test deserialize Pojo to XML.
+	 *
+	 * @throws JsonProcessingException
+	 *             the json processing exception
+	 */
+	@Test
+	public void testDeserialize_TestPojo_WithoutExpectedTag() throws JsonProcessingException, IOException {
+		Xml xml = Xml.newInstance();
+		File file = new File(getClass().getClassLoader().getResource("com/foner/commons/xml/Test_without_expected_tag.xml").getFile());
+		String xmlString = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		MatcherAssert.assertThat(xmlString, Matchers.notNullValue());
+		logger.info(String.format("Xml String: %s", xmlString));
+		TestPojo testPojo = xml.deserialize(xmlString, TestPojo.class);
+		MatcherAssert.assertThat(testPojo.getTitle(), Matchers.nullValue());
+		MatcherAssert.assertThat(testPojo.getX(), Matchers.equalTo(1));
+		MatcherAssert.assertThat(testPojo.getY(), Matchers.equalTo(2));
+	}
+
+	/**
+	 * Test of serialize method, of class Xml. Test deserialize Pojo to XML.
+	 *
+	 * @throws JsonProcessingException
+	 *             the json processing exception
+	 */
+	@Test
+	public void testDeserialize_TestPojo_WithoutExpectedTag_2() throws JsonProcessingException, IOException {
+		Xml xml = Xml.newInstance();
+		File file = new File(getClass().getClassLoader().getResource("com/foner/commons/xml/Test_without_expected_tag_2.xml").getFile());
+		String xmlString = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		MatcherAssert.assertThat(xmlString, Matchers.notNullValue());
+		logger.info(String.format("Xml String: %s", xmlString));
+		TestPojo testPojo = xml.deserialize(xmlString, TestPojo.class);
+		MatcherAssert.assertThat(testPojo.getTitle(), Matchers.nullValue());
+		MatcherAssert.assertThat(testPojo.getX(), Matchers.equalTo(1));
+		MatcherAssert.assertThat(testPojo.getY(), Matchers.equalTo(0));
 	}
 
 	/**
