@@ -5,6 +5,7 @@ import com.foner.commons.pool.Pool;
 import com.foner.commons.pool.PoolManager;
 import com.foner.commons.pool.SimplePooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.apache.log4j.Logger;
 
 /**
  * The class JaxbPoolManager.
@@ -15,15 +16,18 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  * 
  * <pre>
  * // borrowing object from pool
- * Jaxb jaxb = JaxbPoolManager.getInstance().getPool().borrowObject();
+ * Jaxb jaxb = JaxbPoolManager.getInstance().borrowObject();
  * ...
  * // returning object to pool
- * JaxbPoolManager.getInstance().getPool().returnObject(jaxb);
+ * JaxbPoolManager.getInstance().returnObject(jaxb);
  * </pre>
  * 
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public class JaxbPoolManager implements PoolManager<Jaxb> {
+
+	/** The logger. */
+	private static final Logger				logger		= Logger.getLogger(JaxbPoolManager.class);
 
 	/** The instance. */
 	private static final JaxbPoolManager	instance	= new JaxbPoolManager();
@@ -72,6 +76,37 @@ public class JaxbPoolManager implements PoolManager<Jaxb> {
 			pool.close();
 		}
 		readConfiguration();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.pool.PoolManager#borrowObject()
+	 */
+	@Override
+	public Jaxb borrowObject() {
+		Jaxb jaxb = null;
+		try {
+			jaxb = pool.borrowObject();
+			// client.setPooled(true);
+			logger.debug("Borrowed Jaxb from pool: " + jaxb);
+		} catch (Exception e) {
+			logger.warn("Error getting Jaxb from pool", e);
+		}
+		return jaxb;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.pool.PoolManager#returnObject(java.lang.Object)
+	 */
+	@Override
+	public void returnObject(Jaxb jaxb) {
+		if (jaxb.isPooled()) {
+			pool.returnObject(jaxb);
+			logger.debug("Returned Jaxb to pool: " + jaxb);
+		}
 	}
 
 	/**

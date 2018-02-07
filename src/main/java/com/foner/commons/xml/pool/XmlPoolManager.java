@@ -5,6 +5,7 @@ import com.foner.commons.pool.PoolManager;
 import com.foner.commons.pool.SimplePooledObjectFactory;
 import com.foner.commons.xml.Xml;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.apache.log4j.Logger;
 
 /**
  * The class XmlPoolManager.
@@ -15,15 +16,18 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  * 
  * <pre>
  * // borrowing object from pool
- * Xml xml = XmlPoolManager.getInstance().getPool().borrowObject();
+ * Xml xml = XmlPoolManager.getInstance().borrowObject();
  * ...
  * // returning object to pool
- * XmlPoolManager.getInstance().getPool().returnObject(json);
+ * XmlPoolManager.getInstance()..returnObject(json);
  * </pre>
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public class XmlPoolManager implements PoolManager<Xml> {
+
+	/** The logger. */
+	private static final Logger			logger		= Logger.getLogger(XmlPoolManager.class);
 
 	/** The instance. */
 	private static final XmlPoolManager	instance	= new XmlPoolManager();
@@ -72,6 +76,37 @@ public class XmlPoolManager implements PoolManager<Xml> {
 			pool.close();
 		}
 		readConfiguration();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.pool.PoolManager#borrowObject()
+	 */
+	@Override
+	public Xml borrowObject() {
+		Xml xml = null;
+		try {
+			xml = pool.borrowObject();
+			// client.setPooled(true);
+			logger.debug("Borrowed Xml from pool: " + xml);
+		} catch (Exception e) {
+			logger.warn("Error getting Xml from pool", e);
+		}
+		return xml;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.pool.PoolManager#returnObject(java.lang.Object)
+	 */
+	@Override
+	public void returnObject(Xml xml) {
+		if (xml.isPooled()) {
+			pool.returnObject(xml);
+			logger.debug("Returned Xml to pool: " + xml);
+		}
 	}
 
 	/**

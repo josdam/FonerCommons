@@ -5,6 +5,7 @@ import com.foner.commons.pool.Pool;
 import com.foner.commons.pool.PoolManager;
 import com.foner.commons.pool.SimplePooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.apache.log4j.Logger;
 
 /**
  * The class JsonPoolManager.
@@ -15,15 +16,18 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  * 
  * <pre>
  * // borrowing object from pool
- * Json json = JsonPoolManager.getInstance().getPool().borrowObject();
+ * Json json = JsonPoolManager.getInstance().borrowObject();
  * ...
  * // returning object to pool
- * JsonPoolManager.getInstance().getPool().returnObject(json);
+ * JsonPoolManager.getInstance().returnObject(json);
  * </pre>
  *
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public class JsonPoolManager implements PoolManager<Json> {
+
+	/** The logger. */
+	private static final Logger				logger		= Logger.getLogger(JsonPoolManager.class);
 
 	/** The instance. */
 	private static final JsonPoolManager	instance	= new JsonPoolManager();
@@ -72,6 +76,37 @@ public class JsonPoolManager implements PoolManager<Json> {
 			pool.close();
 		}
 		readConfiguration();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.pool.PoolManager#borrowObject()
+	 */
+	@Override
+	public Json borrowObject() {
+		Json json = null;
+		try {
+			json = pool.borrowObject();
+			// client.setPooled(true);
+			logger.debug("Borrowed Json from pool: " + json);
+		} catch (Exception e) {
+			logger.warn("Error getting Json from pool", e);
+		}
+		return json;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.foner.pool.PoolManager#returnObject(java.lang.Object)
+	 */
+	@Override
+	public void returnObject(Json json) {
+		if (json.isPooled()) {
+			pool.returnObject(json);
+			logger.debug("Returned Json to pool: " + json);
+		}
 	}
 
 	/**

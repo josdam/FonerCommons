@@ -6,13 +6,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.namespace.QName;
 import org.apache.log4j.Logger;
 
 /**
@@ -21,6 +22,9 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public final class Jaxb implements PooleableObject {
+
+	/** The constant UTF-8 */
+	private static final String						UTF8			= "UTF-8";
 
 	/** The logger. */
 	private static final Logger						logger			= Logger.getLogger(Jaxb.class);
@@ -135,9 +139,11 @@ public final class Jaxb implements PooleableObject {
 			JAXBContext jaxbContext = getJAXBContext(valueType);
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, StandardCharsets.UTF_8);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, UTF8);
+			@SuppressWarnings("unchecked")
+			JAXBElement<T> rootElement = new JAXBElement<>(new QName(entity.getClass().getSimpleName()), (Class<T>) entity.getClass(), entity);
 			writer = new StringWriter();
-			jaxbMarshaller.marshal(entity, writer);
+			jaxbMarshaller.marshal(rootElement, writer);
 			return writer.toString();
 		} catch (JAXBException e) {
 			throw new FonerCommonException("Unexpected error marshalling: ", e);

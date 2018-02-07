@@ -38,4 +38,19 @@ public interface PoolManager<T> {
 	 * Reloads pool.
 	 */
 	void reloadPool();
+
+	/**
+	 * Borrow object.
+	 *
+	 * @return the t
+	 */
+	T borrowObject();
+
+	/**
+	 * Return object.
+	 *
+	 * @param t
+	 *            the t
+	 */
+	void returnObject(T t);
 }
