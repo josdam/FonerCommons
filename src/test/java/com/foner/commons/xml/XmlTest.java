@@ -113,6 +113,8 @@ public class XmlTest extends AbstractTest {
 	 *
 	 * @throws JsonProcessingException
 	 *             the json processing exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
 	public void testDeserialize_TestPojo() throws JsonProcessingException, IOException {
@@ -132,6 +134,8 @@ public class XmlTest extends AbstractTest {
 	 *
 	 * @throws JsonProcessingException
 	 *             the json processing exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
 	public void testDeserialize_TestPojo_WithoutExpectedTag() throws JsonProcessingException, IOException {
@@ -151,6 +155,8 @@ public class XmlTest extends AbstractTest {
 	 *
 	 * @throws JsonProcessingException
 	 *             the json processing exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
 	public void testDeserialize_TestPojo_WithoutExpectedTag_2() throws JsonProcessingException, IOException {
@@ -190,6 +196,8 @@ public class XmlTest extends AbstractTest {
 	 *
 	 * @throws JsonProcessingException
 	 *             the json processing exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
 	public void testSerialize_TestPojo() throws JsonProcessingException, IOException {

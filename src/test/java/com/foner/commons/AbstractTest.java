@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 /**
  * The class AbstractTest.
  *
- * @author Josep Carbonell
+ * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
 public abstract class AbstractTest {
 
@@ -16,9 +16,15 @@ public abstract class AbstractTest {
 	 */
 	protected static final Logger logger = Logger.getLogger(AbstractTest.class);
 
+	/**
+	 * Sets the up class.
+	 */
 	@BeforeClass
 	public static void setUpClass() {}
 
+	/**
+	 * Tear down class.
+	 */
 	@AfterClass
 	public static void tearDownClass() {}
 }

@@ -34,8 +34,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of dateToString method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testDateToString() throws Exception {
@@ -47,8 +48,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of calendarToString method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testCalendarToString() throws Exception {
@@ -59,8 +61,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of dateTimeToString method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testDateTimeToString() throws Exception {
@@ -71,8 +74,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of stringToDate method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testStringToDate() throws Exception {
@@ -83,8 +87,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of stringToDateTime method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testStringToDateTime() throws Exception {
@@ -95,8 +100,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of stringToCalendar method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testStringToCalendar() throws Exception {
@@ -107,8 +113,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of xmlGregorianCalendarToString method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testXmlGregorianCalendarToString() throws Exception {
@@ -119,8 +126,9 @@ public class DateUtilsTest extends AbstractTest {
 
 	/**
 	 * Test of xmlGregorianCalendarToDate method, of class DateUtils.
-	 * 
-	 * @throws java.lang.Exception
+	 *
+	 * @throws Exception
+	 *             the exception
 	 */
 	@Test
 	public void testXmlGregorianCalendarToDate() throws Exception {
