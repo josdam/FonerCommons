@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.lang.annotation.Annotation;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.xml.bind.JAXBContext;
@@ -13,6 +14,7 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.namespace.QName;
 import org.apache.log4j.Logger;
 
@@ -84,7 +86,12 @@ public final class Jaxb implements PooleableObject {
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			reader = new StringReader(xml);
-			return (T) jaxbUnmarshaller.unmarshal(reader);
+			Object object = jaxbUnmarshaller.unmarshal(reader);
+			if (!isXmlRootElement(object.getClass())) {
+				JAXBElement<T> jaxbElement = (JAXBElement) object;
+				return jaxbElement.getValue();
+			}
+			return (T) object;
 		} catch (JAXBException e) {
 			throw new FonerCommonException("Unexpected error unmarshalling: ", e);
 		} finally {
@@ -113,10 +120,32 @@ public final class Jaxb implements PooleableObject {
 			JAXBContext jaxbContext = getJAXBContext(valueType);
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			return (T) jaxbUnmarshaller.unmarshal(file);
+			Object object = jaxbUnmarshaller.unmarshal(file);
+			if (!isXmlRootElement(object.getClass())) {
+				JAXBElement<T> jaxbElement = (JAXBElement) object;
+				return jaxbElement.getValue();
+			}
+			return (T) object;
 		} catch (JAXBException e) {
 			throw new FonerCommonException("Unexpected error unmarshalling: ", e);
 		}
+	}
+
+	/**
+	 * Checks if is xml root element.
+	 *
+	 * @param clazz
+	 *            the clazz
+	 * @return true, if is xml root element
+	 */
+	private static boolean isXmlRootElement(Class<?> clazz) {
+		Annotation[] annotations = clazz.getAnnotations();
+		for (Annotation annotation : annotations) {
+			if (annotation instanceof XmlRootElement) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -140,10 +169,14 @@ public final class Jaxb implements PooleableObject {
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, UTF8);
-			@SuppressWarnings("unchecked")
-			JAXBElement<T> rootElement = new JAXBElement<>(new QName(entity.getClass().getSimpleName()), (Class<T>) entity.getClass(), entity);
 			writer = new StringWriter();
-			jaxbMarshaller.marshal(rootElement, writer);
+			if (!isXmlRootElement(entity.getClass())) {
+				@SuppressWarnings("unchecked")
+				JAXBElement<T> rootElement = new JAXBElement<>(new QName(entity.getClass().getSimpleName()), (Class<T>) entity.getClass(), entity);
+				jaxbMarshaller.marshal(rootElement, writer);
+			} else {
+				jaxbMarshaller.marshal(entity, writer);
+			}
 			return writer.toString();
 		} catch (JAXBException e) {
 			throw new FonerCommonException("Unexpected error marshalling: ", e);
@@ -176,6 +209,18 @@ public final class Jaxb implements PooleableObject {
 			contextStore.put(valueType, jaxbContext);
 		}
 		return jaxbContext;
+	}
+
+	/**
+	 * Sets value type.
+	 * 
+	 * @param valueType
+	 *            the value type
+	 * @throws JAXBException
+	 *             the JAXB exception
+	 */
+	public void setValueType(Class<?> valueType) throws JAXBException {
+		getJAXBContext(valueType);
 	}
 
 	/*
