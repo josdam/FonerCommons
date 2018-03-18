@@ -1,12 +1,15 @@
 package com.foner.commons.xml;
 
+import com.ctc.wstx.stax.WstxInputFactory;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.foner.commons.pool.PooleableObject;
 import java.io.IOException;
+import javax.xml.stream.XMLInputFactory;
 import org.apache.log4j.Logger;
 
 /**
@@ -45,9 +48,13 @@ public class Xml implements PooleableObject {
 	 * The init.
 	 */
 	private void init() {
-		mapper = new XmlMapper();
+		// Turn off namespaces for incoming xml messages
+		XMLInputFactory input = new WstxInputFactory();
+		input.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, Boolean.FALSE);
+		mapper = new XmlMapper(input);
 		mapper.findAndRegisterModules();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 		// Ignore null values when writing json.
 		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
 		// Don't throw an exception when json has extra fields you are
