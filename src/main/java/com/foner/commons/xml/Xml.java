@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 import com.foner.commons.pool.PooleableObject;
 import java.io.IOException;
 import javax.xml.stream.XMLInputFactory;
@@ -61,6 +62,8 @@ public class Xml implements PooleableObject {
 		// not serializing on. This is useful when you want to use a pojo
 		// for deserialization and only care about a portion of the json
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		// Register Jaxb annotations module
+		mapper.registerModule(new JaxbAnnotationModule());
 
 		this.writer = mapper.writer();
 		this.prettyWriter = mapper.writerWithDefaultPrettyPrinter();
