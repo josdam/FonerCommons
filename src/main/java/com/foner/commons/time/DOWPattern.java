@@ -143,7 +143,7 @@ public class DOWPattern implements Serializable {
 	private int getDayMask(int dayOfWeek) {
 		int convertedDay = dayOfWeek - this.weekStart;
 		if (convertedDay < 0) {
-			convertedDay = convertedDay + 8;
+			convertedDay += 8;
 		} else {
 			convertedDay++;
 		}
@@ -203,7 +203,7 @@ public class DOWPattern implements Serializable {
 			return false;
 		} else {
 			DOWPattern aDow = (DOWPattern) o;
-			return (aDow.pattern == this.pattern) && (aDow.weekStart == this.weekStart) && (aDow.invertedWeek == this.invertedWeek);
+			return (aDow.getPattern() == this.pattern) && (aDow.getWeekStart() == this.weekStart) && (aDow.isInvertedWeek() == this.invertedWeek);
 		}
 	}
 
@@ -229,7 +229,7 @@ public class DOWPattern implements Serializable {
 	 * @return true, if successful
 	 */
 	public boolean intersects(DOWPattern other) {
-		int anded = (this.pattern & other.pattern);
+		int anded = (this.pattern & other.getPattern());
 		return (anded != 0);
 	}
 

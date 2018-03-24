@@ -145,11 +145,11 @@ public final class OkHttpClientUtils {
 		// adding http headers if is necessary
 		if ((httpHeaders != null) && !httpHeaders.isEmpty()) {
 			Request.Builder builder = request.newBuilder();
-			for (Map.Entry<String, String> entry : httpHeaders.entrySet()) {
+			httpHeaders.entrySet().forEach((entry) -> {
 				String key = entry.getKey();
 				String value = entry.getValue();
 				builder.addHeader(key, value);
-			}
+			});
 			request = builder.build();
 		}
 		// calling to server and getting response

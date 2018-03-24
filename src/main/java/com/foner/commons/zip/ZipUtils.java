@@ -1,8 +1,9 @@
 package com.foner.commons.zip;
 
-import com.google.common.io.Files;
+import com.foner.commons.exception.FonerCommonException;
 import com.foner.commons.http.HttpMethodType;
 import com.foner.commons.http.OkHttpClientUtils;
+import com.google.common.io.Files;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -78,7 +79,7 @@ public final class ZipUtils {
 					out.write(buffer, 0, count);
 				}
 			}
-		} catch (Exception ex) {
+		} catch (FonerCommonException | IOException ex) {
 			logger.error("Error zipping file", ex);
 			throw new Exception("Error zipping file", ex);
 		} finally {

@@ -1,8 +1,8 @@
 package com.foner.commons.concurrent.executor.impl;
 
+import com.foner.commons.concurrent.executor.ExecutorServiceManager;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import com.foner.commons.concurrent.executor.ExecutorServiceManager;
 
 /**
  * The class GenericCachedPoolExecutorServiceManager.

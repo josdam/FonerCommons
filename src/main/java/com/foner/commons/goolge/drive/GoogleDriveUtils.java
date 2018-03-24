@@ -371,9 +371,9 @@ public class GoogleDriveUtils {
 				com.google.api.services.drive.model.File folder = files.getItems().get(0);
 				folderID = folder.getId();
 			} else {
-				for (com.google.api.services.drive.model.File file : files.getItems()) {
+				files.getItems().forEach((file) -> {
 					logger.info(file.getTitle() + " - " + file.getId() + " - " + file.getMimeType());
-				}
+				});
 				throw new Exception("Google drive find More than one folder: " + folderName);
 			}
 		} else {

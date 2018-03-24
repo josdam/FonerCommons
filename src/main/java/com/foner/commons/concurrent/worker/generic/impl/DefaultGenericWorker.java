@@ -2,7 +2,6 @@ package com.foner.commons.concurrent.worker.generic.impl;
 
 import com.foner.commons.Parameter;
 import com.foner.commons.concurrent.worker.generic.GenericWorker;
-import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

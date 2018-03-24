@@ -41,22 +41,22 @@ public final class HttpClientUtils {
 	/**
 	 * The Constant GET_METHOD.
 	 */
-	public static String		GET_METHOD		= "GET";
+	public static final String	GET_METHOD		= "GET";
 
 	/**
 	 * The Constant POST_METHOD.
 	 */
-	public static String		POST_METHOD		= "POST";
+	public static final String	POST_METHOD		= "POST";
 
 	/**
 	 * The Constant PUT_METHOD.
 	 */
-	public static String		PUT_METHOD		= "PUT";
+	public static final String	PUT_METHOD		= "PUT";
 
 	/**
 	 * The Constant DELETE_METHOD.
 	 */
-	public static String		DELETE_METHOD	= "DELETE";
+	public static final String	DELETE_METHOD	= "DELETE";
 
 	/**
 	 * The Constant DEFAULT_TIMEOUT.
@@ -186,13 +186,7 @@ public final class HttpClientUtils {
 				httpsConnetion.setSSLSocketFactory(sc.getSocketFactory());
 
 				// Create all-trusting host name verifier
-				HostnameVerifier allHostsValid = new HostnameVerifier() {
-
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return true;
-					}
-				};
+				HostnameVerifier allHostsValid = (String hostname, SSLSession session) -> true;
 
 				// Install the all-trusting host verifier
 				HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
@@ -248,12 +242,11 @@ public final class HttpClientUtils {
 				httpURLConnection.setRequestMethod(GET_METHOD);
 			}
 			if (httpHeaders != null) {
-				for (Map.Entry<String, String> entrySet : httpHeaders.entrySet()) {
+				httpHeaders.entrySet().forEach((entrySet) -> {
 					String key = entrySet.getKey();
 					String value = entrySet.getValue();
 					httpURLConnection.setRequestProperty(key, value);
-
-				}
+				});
 			}
 			if (StringUtils.isNotEmpty(request)) {
 				// Send request
@@ -299,7 +292,7 @@ public final class HttpClientUtils {
 	private static InputStream dispatch(HttpURLConnection http) throws Exception {
 		try {
 			return http.getInputStream();
-		} catch (Exception ex) {
+		} catch (IOException ex) {
 			logger.error(ex);
 			return http.getErrorStream();
 		}

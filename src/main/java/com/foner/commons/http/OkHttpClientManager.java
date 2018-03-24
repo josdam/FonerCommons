@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
@@ -151,14 +150,7 @@ public class OkHttpClientManager {
 				// Create an ssl socket factory with our all-trusting manager
 				final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 				builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-				builder.hostnameVerifier(new HostnameVerifier() {
-
-					@Override
-					public boolean verify(String hostname, SSLSession session) {
-						return true;
-					}
-
-				});
+				builder.hostnameVerifier((String hostname, SSLSession session) -> true);
 			} catch (NoSuchAlgorithmException | KeyManagementException ex) {
 				logger.error("Error setting configuration for ingnoring ssl certificates", ex);
 			}
