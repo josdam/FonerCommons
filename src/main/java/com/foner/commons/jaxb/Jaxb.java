@@ -2,6 +2,7 @@ package com.foner.commons.jaxb;
 
 import com.foner.commons.exception.FonerCommonException;
 import com.foner.commons.pool.PooleableObject;
+import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -25,17 +26,23 @@ import org.apache.log4j.Logger;
  */
 public final class Jaxb implements PooleableObject {
 
+	/** The constant NAMESPACE_PREFIX_MAPPER_PROPERTY. */
+	private static final String						NAMESPACE_PREFIX_MAPPER_PROPERTY	= "com.sun.xml.internal.bind.namespacePrefixMapper";
+
 	/** The constant UTF-8 */
-	private static final String						UTF8			= "UTF-8";
+	private static final String						UTF8								= "UTF-8";
 
 	/** The logger. */
-	private static final Logger						logger			= Logger.getLogger(Jaxb.class);
+	private static final Logger						logger								= Logger.getLogger(Jaxb.class);
 
 	/** The instance. */
-	private static final Jaxb						instance		= new Jaxb();
+	private static final Jaxb						instance							= new Jaxb();
 
 	/** The Constant contextStore. */
-	private static final Map<Class<?>, JAXBContext>	contextStore	= new ConcurrentHashMap<>();
+	private static final Map<Class<?>, JAXBContext>	contextStore						= new ConcurrentHashMap<>();
+
+	/** The namespace prefix mapper. */
+	private NamespacePrefixMapper					namespacePrefixMapper;
 
 	/** Indicates if this object is pooled. */
 	private boolean									pooled;
@@ -169,6 +176,9 @@ public final class Jaxb implements PooleableObject {
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, UTF8);
+			if (this.namespacePrefixMapper != null) {
+				jaxbMarshaller.setProperty(NAMESPACE_PREFIX_MAPPER_PROPERTY, namespacePrefixMapper);
+			}
 			writer = new StringWriter();
 			if (!isXmlRootElement(entity.getClass())) {
 				@SuppressWarnings("unchecked")
@@ -221,6 +231,25 @@ public final class Jaxb implements PooleableObject {
 	 */
 	public void setValueType(Class<?> valueType) throws JAXBException {
 		getJAXBContext(valueType);
+	}
+
+	/**
+	 * Gets the namespace prefix mapper.
+	 *
+	 * @return the namespace prefix mapper
+	 */
+	public NamespacePrefixMapper getNamespacePrefixMapper() {
+		return namespacePrefixMapper;
+	}
+
+	/**
+	 * Sets the namespace prefix mapper.
+	 *
+	 * @param namespacePrefixMapper
+	 *            the new namespace prefix mapper
+	 */
+	public void setNamespacePrefixMapper(NamespacePrefixMapper namespacePrefixMapper) {
+		this.namespacePrefixMapper = namespacePrefixMapper;
 	}
 
 	/*
