@@ -35,11 +35,14 @@
                         </goals>
                     </execution>
                 </executions>
-                <!--
+                
                 <configuration>
-                    <schemaDirectory>${basedir}/src/main/resources/xsd/*.xsd</schemaDirectory>
+                    <!--
+                    <schemaDirectory>src/main/resources/xsd/</schemaDirectory>
+                    -->
+                    <generatePackage>es.juniper.webservice._2007</generatePackage>
                 </configuration>
-                -->
+                
             </plugin>
             <!--
             <plugin>
