@@ -169,6 +169,25 @@ public final class Jaxb implements PooleableObject {
 	 *             the jumbo common exception
 	 */
 	public <T> String marshal(T entity, Class<T> valueType) throws FonerCommonException {
+		return marshal(entity, valueType, null);
+	}
+
+	/**
+	 * Marshal.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param entity
+	 *            the entity
+	 * @param valueType
+	 *            the value type
+	 * @param rootNamespaceURI
+	 *            the root namespace URI
+	 * @return the string
+	 * @throws FonerCommonException
+	 *             the jumbo common exception
+	 */
+	public <T> String marshal(T entity, Class<T> valueType, String rootNamespaceURI) throws FonerCommonException {
 		StringWriter writer = null;
 
 		try {
@@ -182,7 +201,8 @@ public final class Jaxb implements PooleableObject {
 			writer = new StringWriter();
 			if (!isXmlRootElement(entity.getClass())) {
 				@SuppressWarnings("unchecked")
-				JAXBElement<T> rootElement = new JAXBElement<>(new QName(entity.getClass().getSimpleName()), (Class<T>) entity.getClass(), entity);
+				JAXBElement<T> rootElement = new JAXBElement<>(new QName(rootNamespaceURI, entity.getClass().getSimpleName()), (Class<T>) entity.getClass(),
+						entity);
 				jaxbMarshaller.marshal(rootElement, writer);
 			} else {
 				jaxbMarshaller.marshal(entity, writer);
