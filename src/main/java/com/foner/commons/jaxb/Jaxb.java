@@ -17,6 +17,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.namespace.QName;
+import javax.xml.transform.stream.StreamSource;
 import org.apache.log4j.Logger;
 
 /**
@@ -87,24 +88,27 @@ public final class Jaxb implements PooleableObject {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T unmarshal(String xml, Class<T> valueType) throws FonerCommonException {
+		long time = System.currentTimeMillis();
 		StringReader reader = null;
 		try {
 			JAXBContext jaxbContext = getJAXBContext(valueType);
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			reader = new StringReader(xml);
-			Object object = jaxbUnmarshaller.unmarshal(reader);
-			if (!isXmlRootElement(object.getClass())) {
-				JAXBElement<T> jaxbElement = (JAXBElement) object;
+			if (isXmlRootElement(valueType)) {
+				Object object = jaxbUnmarshaller.unmarshal(reader);
+				return (T) object;
+			} else {
+				JAXBElement<T> jaxbElement = (JAXBElement) jaxbUnmarshaller.unmarshal(new StreamSource(reader), valueType);
 				return jaxbElement.getValue();
 			}
-			return (T) object;
 		} catch (JAXBException e) {
 			throw new FonerCommonException("Unexpected error unmarshalling: ", e);
 		} finally {
 			if (reader != null) {
 				reader.close();
 			}
+			logger.debug("Unmarshal in " + (System.currentTimeMillis() - time) + " ms.");
 		}
 	}
 
@@ -123,18 +127,22 @@ public final class Jaxb implements PooleableObject {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T unmarshal(File file, Class<T> valueType) throws FonerCommonException {
+		long time = System.currentTimeMillis();
 		try {
 			JAXBContext jaxbContext = getJAXBContext(valueType);
 			// creating new unmarshaller because it's not thread safe while JAXBContext it is
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			Object object = jaxbUnmarshaller.unmarshal(file);
-			if (!isXmlRootElement(object.getClass())) {
-				JAXBElement<T> jaxbElement = (JAXBElement) object;
+			if (isXmlRootElement(valueType)) {
+				Object object = jaxbUnmarshaller.unmarshal(file);
+				return (T) object;
+			} else {
+				JAXBElement<T> jaxbElement = (JAXBElement) jaxbUnmarshaller.unmarshal(new StreamSource(file), valueType);
 				return jaxbElement.getValue();
 			}
-			return (T) object;
 		} catch (JAXBException e) {
 			throw new FonerCommonException("Unexpected error unmarshalling: ", e);
+		} finally {
+			logger.debug("Unmarshal in " + (System.currentTimeMillis() - time) + " ms.");
 		}
 	}
 
@@ -188,6 +196,7 @@ public final class Jaxb implements PooleableObject {
 	 *             the jumbo common exception
 	 */
 	public <T> String marshal(T entity, Class<T> valueType, String rootNamespaceURI) throws FonerCommonException {
+		long time = System.currentTimeMillis();
 		StringWriter writer = null;
 
 		try {
@@ -200,9 +209,7 @@ public final class Jaxb implements PooleableObject {
 			}
 			writer = new StringWriter();
 			if (!isXmlRootElement(entity.getClass())) {
-				@SuppressWarnings("unchecked")
-				JAXBElement<T> rootElement = new JAXBElement<>(new QName(rootNamespaceURI, entity.getClass().getSimpleName()), (Class<T>) entity.getClass(),
-						entity);
+				JAXBElement<T> rootElement = new JAXBElement<>(new QName(rootNamespaceURI, valueType.getSimpleName()), valueType, entity);
 				jaxbMarshaller.marshal(rootElement, writer);
 			} else {
 				jaxbMarshaller.marshal(entity, writer);
@@ -218,6 +225,7 @@ public final class Jaxb implements PooleableObject {
 					throw new FonerCommonException("Unexpected error closing StringWriter: ", e);
 				}
 			}
+			logger.debug("Marshal in " + (System.currentTimeMillis() - time) + " ms.");
 		}
 	}
 
