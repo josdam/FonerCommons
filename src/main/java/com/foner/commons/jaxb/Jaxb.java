@@ -252,13 +252,20 @@ public final class Jaxb implements PooleableObject {
 	/**
 	 * Sets value type.
 	 * 
-	 * @param valueType
-	 *            the value type
+	 * @param valueTypes
+	 *            the value types
 	 * @throws JAXBException
 	 *             the JAXB exception
 	 */
-	public void setValueType(Class<?> valueType) throws JAXBException {
-		getJAXBContext(valueType);
+	public void setValueType(Class<?>... valueTypes) throws JAXBException {
+		if (valueTypes.length == 0) {
+			return; // nothing to do
+		}
+		JAXBContext jaxbContext = contextStore.get(valueTypes[0]);
+		if (jaxbContext == null) {
+			jaxbContext = JAXBContext.newInstance(valueTypes);
+			contextStore.put(valueTypes[0], jaxbContext);
+		}
 	}
 
 	/**
