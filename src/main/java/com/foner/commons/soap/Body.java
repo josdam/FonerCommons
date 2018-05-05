@@ -10,8 +10,11 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 public class Body {
 
 	/** The fault. */
-	@JacksonXmlProperty(localName = "soap:Fault")
-	private Fault fault;
+	@JacksonXmlProperty(namespace = "http://schemas.xmlsoap.org/soap/envelope/", localName = "Fault")
+	private Fault	fault;
+
+	/** The entity to be implemented. */
+	private Object	entity;
 
 	/**
 	 * Gets the fault.
@@ -30,6 +33,25 @@ public class Body {
 	 */
 	public void setFault(Fault fault) {
 		this.fault = fault;
+	}
+
+	/**
+	 * Gets the entity.
+	 *
+	 * @return the entity
+	 */
+	public Object getEntity() {
+		return entity;
+	}
+
+	/**
+	 * Sets the entity.
+	 *
+	 * @param entity
+	 *            the new entity
+	 */
+	public void setEntity(Object entity) {
+		this.entity = entity;
 	}
 
 }
