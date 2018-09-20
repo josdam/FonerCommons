@@ -16,52 +16,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.7.0</version>
                 <configuration>
                     <compilerArgs>
                         <arg>-XDignore.symbol.file</arg>
                     </compilerArgs>
                     <fork>true</fork>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.13.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                
-                <configuration>
-                    <!--
-                    <schemaDirectory>src/main/resources/xsd/</schemaDirectory>
-                    -->
-                    <generatePackage>es.juniper.webservice._2007</generatePackage>
-                </configuration>
-                
-            </plugin>
-            <!--
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.3.1</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <locale>en</locale>
-                </configuration>
-            </plugin>
-            -->
+            </plugin>            
         </plugins>
     </build>
     
