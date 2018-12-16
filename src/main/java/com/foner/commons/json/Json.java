@@ -50,10 +50,6 @@ public class Json implements PooleableObject {
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		// Ignore null values when writing json.
 		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
-		// Don't throw an exception when json has extra fields you are
-		// not serializing on. This is useful when you want to use a pojo
-		// for deserialization and only care about a portion of the json
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 		this.writer = mapper.writer();
 		this.prettyWriter = mapper.writerWithDefaultPrettyPrinter();
