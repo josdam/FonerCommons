@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.foner.commons.pool.PooleableObject;
 import java.io.IOException;
 import org.apache.log4j.Logger;
@@ -48,8 +49,8 @@ public class Json implements PooleableObject {
 		mapper = new ObjectMapper();
 		mapper.findAndRegisterModules();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		// Ignore null values when writing json.
 		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
+		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
 		this.writer = mapper.writer();
 		this.prettyWriter = mapper.writerWithDefaultPrettyPrinter();
