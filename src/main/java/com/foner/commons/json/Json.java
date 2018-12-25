@@ -50,7 +50,6 @@ public class Json implements PooleableObject {
 		mapper.findAndRegisterModules();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
-		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, true);
 		mapper.configure(SerializationFeature.FAIL_ON_SELF_REFERENCES, false);
 		mapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
 		mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
