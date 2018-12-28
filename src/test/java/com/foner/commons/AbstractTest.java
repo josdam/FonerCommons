@@ -21,7 +21,7 @@ public abstract class AbstractTest {
 	 */
 	@BeforeClass
 	public static void setUpClass() {
-		logger.debug("Excuted before class");
+		logger.debug("Excuted before class.");
 	}
 
 	/**
@@ -29,6 +29,6 @@ public abstract class AbstractTest {
 	 */
 	@AfterClass
 	public static void tearDownClass() {
-		logger.debug("Excuted after class");
+		logger.debug("Excuted after class.");
 	}
 }
