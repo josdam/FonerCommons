@@ -21,7 +21,7 @@ public abstract class AbstractTest {
 	 */
 	@BeforeClass
 	public static void setUpClass() {
-		logger.debug("Excuted before class loaded");
+		logger.debug("Excuted before class loaded 2");
 	}
 
 	/**
