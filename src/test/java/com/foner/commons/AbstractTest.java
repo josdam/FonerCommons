@@ -20,11 +20,15 @@ public abstract class AbstractTest {
 	 * Sets the up class.
 	 */
 	@BeforeClass
-	public static void setUpClass() {}
+	public static void setUpClass() {
+		logger.debug("Excuted before class");
+	}
 
 	/**
 	 * Tear down class.
 	 */
 	@AfterClass
-	public static void tearDownClass() {}
+	public static void tearDownClass() {
+		logger.debug("Excuted after class");
+	}
 }
