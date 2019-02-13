@@ -136,4 +136,22 @@ public class DateUtilsTest extends AbstractTest {
 		assertNotNull(result);
 	}
 
+	/**
+	 * Test metro dates.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void testMetroDatesToUib() throws Exception {
+		DateTime dateTimeVerdaguer = DateUtils.stringToDateTime("13/02/2019 06:58", DateUtils.PATTERN_DD_MM_YYYY_HH_mm);
+		for (int i = 0; i < 50; i++) {
+			logger.info("Gran Vía Asima: " + DateUtils.dateTimeToString(dateTimeVerdaguer, DateUtils.PATTERN_DD_MM_YYYY_HH_mm));
+			DateTime dateTimeAsima = dateTimeVerdaguer.plusMinutes(7);
+			logger.info("Jacinto Verdaguer: " + DateUtils.dateTimeToString(dateTimeAsima, DateUtils.PATTERN_DD_MM_YYYY_HH_mm));
+
+			dateTimeVerdaguer = dateTimeVerdaguer.plusMinutes(20);
+		}
+	}
+
 }

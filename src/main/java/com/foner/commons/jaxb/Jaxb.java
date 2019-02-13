@@ -99,7 +99,7 @@ public final class Jaxb implements PooleableObject {
 				Object object = jaxbUnmarshaller.unmarshal(reader);
 				return (T) object;
 			} else {
-				JAXBElement<T> jaxbElement = (JAXBElement) jaxbUnmarshaller.unmarshal(new StreamSource(reader), valueType);
+				JAXBElement<T> jaxbElement = jaxbUnmarshaller.unmarshal(new StreamSource(reader), valueType);
 				return jaxbElement.getValue();
 			}
 		} catch (JAXBException e) {
@@ -136,7 +136,7 @@ public final class Jaxb implements PooleableObject {
 				Object object = jaxbUnmarshaller.unmarshal(file);
 				return (T) object;
 			} else {
-				JAXBElement<T> jaxbElement = (JAXBElement) jaxbUnmarshaller.unmarshal(new StreamSource(file), valueType);
+				JAXBElement<T> jaxbElement = jaxbUnmarshaller.unmarshal(new StreamSource(file), valueType);
 				return jaxbElement.getValue();
 			}
 		} catch (JAXBException e) {

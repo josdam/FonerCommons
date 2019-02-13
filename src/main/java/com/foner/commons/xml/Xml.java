@@ -56,13 +56,7 @@ public class Xml implements PooleableObject {
 		mapper.findAndRegisterModules();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-		// Ignore null values when writing json.
 		mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
-		// Don't throw an exception when json has extra fields you are
-		// not serializing on. This is useful when you want to use a pojo
-		// for deserialization and only care about a portion of the json
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		// Register Jaxb annotations module
 		mapper.registerModule(new JaxbAnnotationModule());
 
 		this.writer = mapper.writer();
