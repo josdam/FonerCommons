@@ -1,7 +1,8 @@
-package com.foner.commons.concurrent.callable.generic.impl;
+package com.foner.commons.concurrent.supplier.generic.impl;
 
 import com.foner.commons.Parameter;
 import com.foner.commons.concurrent.callable.generic.GenericCallable;
+import com.foner.commons.concurrent.supplier.generic.GenericSupplier;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -13,11 +14,11 @@ import org.apache.log4j.Logger;
 /**
  * The class DefaultGenericCallable.
  * 
- * @param <T>
+ * @param <I>
  *            the generic type
  * @author <a href="mailto:josepdcs@gmail.com">Josep Carbonell</a>
  */
-public class DefaultGenericCallable<T> implements GenericCallable<Object>, Serializable {
+public class DefaultGenericSupplier<I, T> implements GenericSupplier<T>, Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -1796233873145607876L;
@@ -26,7 +27,7 @@ public class DefaultGenericCallable<T> implements GenericCallable<Object>, Seria
 	private static final Logger	logger				= Logger.getLogger(GenericCallable.class);
 
 	/** The instance. */
-	private T					instance;
+	private I					instance;
 
 	/** The method name. */
 	private String				methodName;
@@ -42,7 +43,7 @@ public class DefaultGenericCallable<T> implements GenericCallable<Object>, Seria
 	 * @param methodName
 	 *            the method name
 	 */
-	public DefaultGenericCallable(T instance, String methodName) {
+	public DefaultGenericSupplier(I instance, String methodName) {
 		this.instance = instance;
 		this.methodName = methodName;
 	}
@@ -52,7 +53,7 @@ public class DefaultGenericCallable<T> implements GenericCallable<Object>, Seria
 	 * 
 	 * @return single instance of Launcher
 	 */
-	public T getInstance() {
+	public I getInstance() {
 		return instance;
 	}
 
@@ -62,7 +63,7 @@ public class DefaultGenericCallable<T> implements GenericCallable<Object>, Seria
 	 * @param instance
 	 *            the new instance
 	 */
-	public void setInstance(T instance) {
+	public void setInstance(I instance) {
 		this.instance = instance;
 	}
 
@@ -110,16 +111,17 @@ public class DefaultGenericCallable<T> implements GenericCallable<Object>, Seria
 	 * @see java.util.concurrent.Callable#call()
 	 */
 	@Override
-	public Object call() throws Exception {
-		Object o = null;
+	@SuppressWarnings("unchecked")
+	public T get() {
+		T o = null;
 		if ((instance != null) && StringUtils.isNotEmpty(methodName)) {
 			String taskName = instance.getClass().getName() + "." + methodName;
-			logger.debug("Running generic callable task: " + taskName);
+			logger.debug("Running generic supplied task: " + taskName);
 			long time = System.currentTimeMillis();
 			try {
 				if (parameters.isEmpty()) {
 					Method method = instance.getClass().getMethod(methodName);
-					o = method.invoke(instance);
+					o = (T) method.invoke(instance);
 				} else {
 					Class<?> types[] = new Class<?>[parameters.size()];
 					Object values[] = new Object[parameters.size()];
@@ -130,13 +132,13 @@ public class DefaultGenericCallable<T> implements GenericCallable<Object>, Seria
 						i++;
 					}
 					Method method = instance.getClass().getMethod(methodName, types);
-					o = method.invoke(instance, values);
+					o = (T) method.invoke(instance, values);
 				}
 			} catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | SecurityException | InvocationTargetException ex) {
 				logger.error(ex, ex);
 			}
 			long elapsed = System.currentTimeMillis() - time;
-			logger.debug("Executed generic callable task " + taskName + " in " + elapsed + " ms.");
+			logger.debug("Executed generic supplied task " + taskName + " in " + elapsed + " ms.");
 		}
 
 		return o;
